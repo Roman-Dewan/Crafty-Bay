@@ -16,6 +16,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   provider: ^6.1.5+1
+  firebase_core: ^4.6.0
+  firebase_analytics: ^12.2.0
+  firebase_crashlytics: ^5.1.0
 
 dev_dependencies:
   flutter_test:

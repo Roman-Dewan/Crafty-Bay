@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "19407502257",
+    "project_id": "roman-personal-projects",
+    "storage_bucket": "roman-personal-projects.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19407502257:android:f6361ba2ca4f5598ec5b90",
+        "android_client_info": {
+          "package_name": "com.example.crafty_bay"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpo46iUiVjjYi6Z1I85fUDNDJ8JvZkovY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19407502257:android:397c8fedc85cc393ec5b90",
+        "android_client_info": {
+          "package_name": "com.example.live_score_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpo46iUiVjjYi6Z1I85fUDNDJ8JvZkovY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
