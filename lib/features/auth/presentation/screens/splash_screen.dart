@@ -1,5 +1,7 @@
+import 'package:crafty_bay/app/app_theme.dart';
 import 'package:crafty_bay/app/extensions/localization_extension.dart';
 import 'package:crafty_bay/app/providers/language_provider.dart';
+import 'package:crafty_bay/app/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -43,6 +45,25 @@ class _SplashScreenState extends State<SplashScreen> {
             onSelected: (value) {
               languageProvider.changeLocale(value!);
             },
+          ),
+          ElevatedButton(
+            onPressed: () {
+              context.read<ThemeProvider>().toggleTheme();
+            },
+            child: Text("Theme button"),
+          ),
+          ToggleButtons(
+            fillColor: Colors.green,
+            selectedColor: Colors.white,
+            isSelected: [true, false],
+            onPressed: (index) {
+              if (index == 0) {
+                context.read<ThemeProvider>().setTheme(AppTheme.lightTheme);
+              } else {
+                context.read<ThemeProvider>().setTheme(AppTheme.darkTheme);
+              }
+            },
+            children: [Text("Light"), Text("Dark")],
           ),
         ],
       ),

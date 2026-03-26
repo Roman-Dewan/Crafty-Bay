@@ -6,10 +6,10 @@ class AppTheme {
 
   static final ThemeData _lightTheme = ThemeData(
     useMaterial3: true,
-    dropdownMenuTheme: DropdownMenuThemeData(
-      disabledColor: Colors.red,
-      textStyle: TextStyle(color: Colors.blue),
-    ),
+    scaffoldBackgroundColor: Colors.green.shade200,
   );
-  static final ThemeData _darkTheme = ThemeData(useMaterial3: true);
+  static final ThemeData _darkTheme = ThemeData(
+    useMaterial3: true,
+    scaffoldBackgroundColor: Colors.red.shade200,
+  );
 }

@@ -1,5 +1,6 @@
 import 'package:crafty_bay/app/app_routes.dart';
 import 'package:crafty_bay/app/providers/language_provider.dart';
+import 'package:crafty_bay/app/providers/theme_provider.dart';
 import 'package:crafty_bay/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -13,10 +14,12 @@ class CraftyBayApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => LanguageProvider()),
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
       ],
-      child: Consumer<LanguageProvider>(
-        builder: (context, languageProvider, child) {
+      child: Consumer2<LanguageProvider, ThemeProvider>(
+        builder: (context, languageProvider, themeProvider, child) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             localizationsDelegates: [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
@@ -27,8 +30,7 @@ class CraftyBayApp extends StatelessWidget {
             supportedLocales: languageProvider.supportedLocales,
             initialRoute: "/",
             onGenerateRoute: AppRoutes.onGenerateRoute,
-            theme: ThemeData(),
-            darkTheme: ThemeData(),
+            theme: themeProvider.themeData,
           );
         },
       ),
