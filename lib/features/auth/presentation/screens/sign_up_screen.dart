@@ -1,6 +1,7 @@
 import 'package:crafty_bay/features/auth/presentation/screens/otp_verification_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../app/extensions/localization_extension.dart';
 import '../../../../app/extensions/utils_extension.dart';
 import '../../../shared/presentation/utils/validators.dart';
 import '../widgets/app_logo.dart';
@@ -36,12 +37,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   AppLogo(),
                   const SizedBox(height: 16),
                   Text(
-                    "Sign Up with email",
+                    context.l10n.signUpWithEmail,
                     style: context.textTheme.titleLarge,
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    "Get started with your details",
+                    context.l10n.getStartedDetails,
                     style: context.textTheme.bodyMedium?.copyWith(
                       color: Colors.grey,
                     ),
@@ -49,67 +50,96 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const SizedBox(height: 24),
                   TextFormField(
                     controller: _emailController,
-                    decoration: InputDecoration(hintText: "Email"),
+                    decoration: InputDecoration(hintText: context.l10n.email),
                     validator: (value) => Validators.validatorEmail(
                       value,
-                      msg: "Email address is required",
+                      requiredMsg: context.l10n.emailRequired,
+                      invalidMsg: context.l10n.invalidEmail,
                     ),
                   ),
                   const SizedBox(height: 8),
                   TextFormField(
                     controller: _firstNameController,
                     keyboardType: TextInputType.text,
-                    decoration: InputDecoration(hintText: "First Name"),
+                    decoration: InputDecoration(
+                      hintText: context.l10n.firstName,
+                    ),
                     validator: (value) => Validators.validatorText(
                       value,
-                      msg: "First Name is required",
+                      msg: context.l10n.firstNameRequired,
                     ),
                   ),
                   const SizedBox(height: 8),
                   TextFormField(
                     controller: _lastNameController,
                     keyboardType: TextInputType.text,
-                    decoration: InputDecoration(hintText: "Last Name"),
+                    decoration: InputDecoration(
+                      hintText: context.l10n.lastName,
+                    ),
                     validator: (value) => Validators.validatorText(
                       value,
-                      msg: "Last Name is required",
+                      msg: context.l10n.lastNameRequired,
                     ),
                   ),
                   const SizedBox(height: 8),
                   TextFormField(
                     controller: _phoneController,
                     keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(hintText: "Phone"),
+                    decoration: InputDecoration(hintText: context.l10n.phone),
                     validator: (value) => Validators.validatorBDPhone(
                       value,
-                      msg: "Phone number is required",
+                      requiredMsg: context.l10n.phoneRequired,
+                      invalidMsg: context.l10n.invalidPhone,
                     ),
                   ),
                   const SizedBox(height: 8),
                   TextFormField(
                     controller: _cityController,
                     keyboardType: TextInputType.text,
-                    decoration: InputDecoration(hintText: "City"),
+                    decoration: InputDecoration(hintText: context.l10n.city),
                     validator: (value) => Validators.validatorText(
                       value,
-                      msg: "City is required",
+                      msg: context.l10n.cityRequired,
                     ),
                   ),
                   const SizedBox(height: 8),
                   TextFormField(
                     controller: _passwordController,
                     keyboardType: TextInputType.text,
-                    decoration: InputDecoration(hintText: "Password"),
+                    decoration: InputDecoration(
+                      hintText: context.l10n.password,
+                    ),
                     validator: (value) => Validators.validatorPassword(
                       value,
-                      msg: "Password is required",
+                      requiredMsg: context.l10n.passwordRequired,
+                      lengthMsg: context.l10n.passwordLength,
+                      uppercaseMsg: context.l10n.passwordUppercase,
+                      lowercaseMsg: context.l10n.passwordLowercase,
+                      numberMsg: context.l10n.passwordNumber,
                     ),
                   ),
                   const SizedBox(height: 16),
                   FilledButton(
                     onPressed: _onTapSignUpButton,
-                    child: Text("Sign Up"),
+                    child: Text(context.l10n.signUp),
                   ),
+                  // ElevatedButton(
+                  //   onPressed: () {
+                  //     Locale locale = context
+                  //         .read<LanguageProvider>()
+                  //         .currentLocale;
+                  //     if (locale == Locale('en')) {
+                  //       context.read<LanguageProvider>().changeLocale(
+                  //         Locale('bn'),
+                  //       );
+                  //     } else {
+                  //       context.read<LanguageProvider>().changeLocale(
+                  //         Locale('en'),
+                  //       );
+                  //     }
+                  //   },
+                  //   child: Text("Language button"),
+                  // ),
                 ],
               ),
             ),

@@ -19,5 +19,16 @@
     "verify": "Verify",
     "resendCode": "Resend Code",
     "codeExpired": "Code expired",
-    "thisCodeWillExpireIn": "This code will expire in:"
+    "thisCodeWillExpireIn": "This code will expire in:",
+    "fieldRequired": "This field is required",
+    "invalidEmail": "Invalid email address",
+    "passwordLength": "Password must be at least 6 characters long",
+    "passwordUppercase": "Must contain at least one uppercase letter",
+    "passwordLowercase": "Must contain at least one lowercase letter",
+    "passwordNumber": "Must contain at least one number",
+    "confirmPasswordRequired": "Confirm password is required",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "invalidPhone": "Invalid Bangladeshi phone number",
+    "enterOtpCode": "Enter OTP Code",
+    "otpSentMsg": "A 5 digit OTP code has been sent"
 }

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
+import '../../../../app/extensions/localization_extension.dart';
 import '../../../../app/extensions/utils_extension.dart';
 import '../widgets/app_logo.dart';
 
@@ -36,10 +37,10 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
           children: [
             AppLogo(),
             const SizedBox(height: 24),
-            Text("Enter OTP Code", style: context.textTheme.titleLarge),
+            Text(context.l10n.enterOtpCode, style: context.textTheme.titleLarge),
             const SizedBox(height: 5),
             Text(
-              "A 5 digit OTP code has been sent",
+              context.l10n.otpSentMsg,
               style: context.textTheme.bodyMedium?.copyWith(color: Colors.grey),
             ),
             const SizedBox(height: 24),
@@ -61,19 +62,19 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
               onPressed: _otpController.text.length == 5
                   ? () => _onTapVerifyButton(_otpController.text)
                   : null,
-              child: const Text("Verify"),
+              child: Text(context.l10n.verify),
             ),
 
             const SizedBox(height: 24),
             Text(
               _secondsRemaining == 0
-                  ? "Code expired"
-                  : "This code will expire in: ${formatTime(_secondsRemaining)}",
+                  ? context.l10n.codeExpired
+                  : "${context.l10n.thisCodeWillExpireIn} ${formatTime(_secondsRemaining)}",
               style: context.textTheme.bodyMedium,
             ),
             TextButton(
               onPressed: _secondsRemaining == 0 ? _onTapResendCode : null,
-              child: const Text("Resend Code"),
+              child: Text(context.l10n.resendCode),
             ),
           ],
         ),

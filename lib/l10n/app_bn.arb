@@ -19,5 +19,16 @@
     "verify": "যাচাই করুন",
     "resendCode": "কোড পুনরায় পাঠান",
     "codeExpired": "কোডের মেয়াদ শেষ",
-    "thisCodeWillExpireIn": "এই কোডের মেয়াদ শেষ হবে:"
+    "thisCodeWillExpireIn": "এই কোডের মেয়াদ শেষ হবে:",
+    "fieldRequired": "এই ক্ষেত্রটি আবশ্যক",
+    "invalidEmail": "অকার্যকর ইমেইল ঠিকানা",
+    "passwordLength": "পাসওয়ার্ড অন্তত ৬ অক্ষরের হতে হবে",
+    "passwordUppercase": "অন্তত একটি বড় হাতের অক্ষর থাকতে হবে",
+    "passwordLowercase": "অন্তত একটি ছোট হাতের অক্ষর থাকতে হবে",
+    "passwordNumber": "অন্তত একটি সংখ্যা থাকতে হবে",
+    "confirmPasswordRequired": "পাসওয়ার্ড নিশ্চিতকরণ আবশ্যক",
+    "passwordsDoNotMatch": "পাসওয়ার্ড মিলছে না",
+    "invalidPhone": "অকার্যকর বাংলাদেশী ফোন নম্বর",
+    "enterOtpCode": "ওটিপি কোড লিখুন",
+    "otpSentMsg": "একটি ৫ ডিজিটের ওটিপি কোড পাঠানো হয়েছে"
 }
