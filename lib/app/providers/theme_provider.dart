@@ -1,22 +1,20 @@
-import 'package:crafty_bay/app/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class ThemeProvider extends ChangeNotifier {
-  ThemeData _themeData = AppTheme.lightTheme;
+  ThemeMode _themeMode = ThemeMode.light;
 
-  ThemeData get themeData => _themeData;
+  ThemeMode get themeMode => _themeMode;
 
-  void setTheme(ThemeData themeData) {
-    _themeData = themeData;
+  void setThemeMode(ThemeMode themeMode) {
+    _themeMode = themeMode;
     notifyListeners();
   }
 
   void toggleTheme() {
-    if (_themeData == AppTheme.lightTheme) {
-      setTheme(AppTheme.darkTheme);
+    if (_themeMode == ThemeMode.light) {
+      setThemeMode(ThemeMode.dark);
     } else {
-      setTheme(AppTheme.lightTheme);
+      setThemeMode(ThemeMode.light);
     }
-    notifyListeners();
   }
 }

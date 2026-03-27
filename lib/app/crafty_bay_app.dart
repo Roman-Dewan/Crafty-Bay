@@ -1,4 +1,5 @@
 import 'package:crafty_bay/app/app_routes.dart';
+import 'package:crafty_bay/app/app_theme.dart';
 import 'package:crafty_bay/app/providers/language_provider.dart';
 import 'package:crafty_bay/app/providers/theme_provider.dart';
 import 'package:crafty_bay/l10n/app_localizations.dart';
@@ -30,7 +31,9 @@ class CraftyBayApp extends StatelessWidget {
             supportedLocales: languageProvider.supportedLocales,
             initialRoute: "/",
             onGenerateRoute: AppRoutes.onGenerateRoute,
-            theme: themeProvider.themeData,
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: themeProvider.themeMode,
           );
         },
       ),
