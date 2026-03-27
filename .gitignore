@@ -45,8 +45,8 @@ app.*.map.json
 /android/app/release
 
 # FVM Version Cache
-.fvm/
-
+.fvm/*
+!.fvm/fvm_config.json
 # Localization 
 /lib/l10n/app_localizations.dart 
 /lib/l10n/app_localizations_en.dart 
