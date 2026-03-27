@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ThemeProvider extends ChangeNotifier {
-  ThemeMode _themeMode = ThemeMode.light;
+  ThemeMode _themeMode = .light;
 
   ThemeMode get themeMode => _themeMode;
 
@@ -11,10 +11,10 @@ class ThemeProvider extends ChangeNotifier {
   }
 
   void toggleTheme() {
-    if (_themeMode == ThemeMode.light) {
-      setThemeMode(ThemeMode.dark);
+    if (_themeMode == .light) {
+      setThemeMode(.dark);
     } else {
-      setThemeMode(ThemeMode.light);
+      setThemeMode(.light);
     }
   }
 }
