@@ -1,4 +1,23 @@
 {
     "hello": "Hello", 
-    "changeYourLanguage": "Change your language"
+    "changeYourLanguage": "Change your language",
+    "getStartedDetails": "Get started with your details",
+    "firstName": "First Name",
+    "firstNameRequired": "First Name is required",
+    "lastName": "Last Name",
+    "lastNameRequired": "Last Name is required",
+    "email": "Email",
+    "emailRequired": "Email address is required",
+    "phone": "Phone",
+    "phoneRequired": "Phone number is required",
+    "city": "City",
+    "cityRequired": "City is required",
+    "signUp": "Sign Up",
+    "signUpWithEmail": "Sign Up with email",
+    "password": "Password",
+    "passwordRequired": "Password is required",
+    "verify": "Verify",
+    "resendCode": "Resend Code",
+    "codeExpired": "Code expired",
+    "thisCodeWillExpireIn": "This code will expire in:"
 }
