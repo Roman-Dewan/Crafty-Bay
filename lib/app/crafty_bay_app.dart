@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
+import '../features/auth/presentation/providers/timer_provider.dart';
+
 class CraftyBayApp extends StatelessWidget {
   const CraftyBayApp({super.key});
 
@@ -16,6 +18,7 @@ class CraftyBayApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => LanguageProvider()),
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        ChangeNotifierProvider(create: (context) => TimerProvider()),
       ],
       child: Consumer2<LanguageProvider, ThemeProvider>(
         builder: (context, languageProvider, themeProvider, child) {
