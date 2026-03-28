@@ -1,10 +1,10 @@
-import 'package:crafty_bay/features/auth/presentation/screens/otp_verification_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../app/extensions/localization_extension.dart';
 import '../../../../app/extensions/utils_extension.dart';
 import '../../../shared/presentation/utils/validators.dart';
 import '../widgets/app_logo.dart';
+import 'sign_in_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -123,6 +123,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     onPressed: _onTapSignUpButton,
                     child: Text(context.l10n.signUp),
                   ),
+                  const SizedBox(height: 16),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, SignInScreen.name);
+                    },
+                    child: Text(context.l10n.alreadyHaveAccount),
+                  ),
                   // ElevatedButton(
                   //   onPressed: () {
                   //     Locale locale = context
@@ -152,7 +159,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void _onTapSignUpButton() {
     // if (_formKey.currentState!.validate()) {
     // }
-    Navigator.pushNamed(context, OtpVerificationScreen.name);
+    Navigator.pushNamed(context, SignInScreen.name);
   }
 
   @override
