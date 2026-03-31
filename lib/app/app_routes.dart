@@ -4,6 +4,7 @@ import '../features/auth/presentation/screens/otp_verification_screen.dart';
 import '../features/auth/presentation/screens/sign_in_screen.dart';
 import '../features/auth/presentation/screens/sign_up_screen.dart';
 import '../features/auth/presentation/screens/splash_screen.dart';
+import '../features/home/presentation/screen/home_screen.dart';
 import '../features/shared/presentation/screens/bottom_nav_bar.dart';
 
 class AppRoutes {
@@ -24,6 +25,9 @@ class AppRoutes {
         break;
       case BottomNavBar.name:
         widget = const BottomNavBar();
+        break;
+      case HomeScreen.name:
+        widget = const HomeScreen();
         break;
       default:
     }
