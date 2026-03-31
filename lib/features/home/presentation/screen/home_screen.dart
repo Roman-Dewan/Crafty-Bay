@@ -1,4 +1,3 @@
-import 'package:crafty_bay/app/extensions/utils_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -6,6 +5,7 @@ import '../../../../app/asset_paths.dart';
 import '../widgets/app_bar_icon_button.dart';
 import '../widgets/home_slider.dart';
 import '../widgets/search_text_field.dart';
+import '../widgets/section_header.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -64,25 +64,4 @@ class _HomeScreenState extends State<HomeScreen> {
   void _onTapProfileAppBarButton() {}
   void _onTapCallAppBarButton() {}
   void _onTapNotificationAppBarButton() {}
-}
-
-class SectionHeader extends StatelessWidget {
-  final String title;
-  final VoidCallback onTapSeeAll;
-  const SectionHeader({
-    super.key,
-    required this.title,
-    required this.onTapSeeAll,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: .spaceBetween,
-      children: [
-        Text(title, style: context.textTheme.titleMedium),
-        TextButton(onPressed: onTapSeeAll, child: Text("See All")),
-      ],
-    );
-  }
 }
