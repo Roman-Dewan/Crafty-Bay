@@ -1,8 +1,8 @@
-import 'package:crafty_bay/features/auth/presentation/screens/otp_verification_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../app/extensions/localization_extension.dart';
 import '../../../../app/extensions/utils_extension.dart';
+import '../../../shared/presentation/screens/bottom_nav_bar.dart';
 import '../../../shared/presentation/utils/validators.dart';
 import '../widgets/app_logo.dart';
 
@@ -100,7 +100,8 @@ class _SignInScreenState extends State<SignInScreen> {
   void _onTapSignInButton() {
     // if (_formKey.currentState!.validate()) {
     //
-    Navigator.pushNamed(context, OtpVerificationScreen.name);
+    // Navigator.pushNamed(context, OtpVerificationScreen.name);
+    Navigator.pushNamed(context, BottomNavBar.name);
   }
 
   @override

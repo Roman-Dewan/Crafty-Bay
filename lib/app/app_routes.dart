@@ -4,6 +4,7 @@ import '../features/auth/presentation/screens/otp_verification_screen.dart';
 import '../features/auth/presentation/screens/sign_in_screen.dart';
 import '../features/auth/presentation/screens/sign_up_screen.dart';
 import '../features/auth/presentation/screens/splash_screen.dart';
+import '../features/shared/presentation/screens/bottom_nav_bar.dart';
 
 class AppRoutes {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSetting) {
@@ -20,6 +21,9 @@ class AppRoutes {
         break;
       case SignInScreen.name:
         widget = const SignInScreen();
+        break;
+      case BottomNavBar.name:
+        widget = const BottomNavBar();
         break;
       default:
     }

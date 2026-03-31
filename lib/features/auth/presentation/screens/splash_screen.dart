@@ -1,6 +1,6 @@
-import 'package:crafty_bay/features/auth/presentation/screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../../shared/presentation/screens/bottom_nav_bar.dart';
 import '../widgets/app_logo.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _navigateToNextScreen() async {
     await Future.delayed(const Duration(seconds: 5));
     if (mounted) {
-      Navigator.pushReplacementNamed(context, SignUpScreen.name);
+      Navigator.pushReplacementNamed(context, BottomNavBar.name);
     }
   }
 
