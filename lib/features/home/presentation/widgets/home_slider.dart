@@ -38,25 +38,32 @@ class _HomeSliderState extends State<HomeSlider> {
               });
             },
           ),
-          items: [1, 2, 3, 4, 5].map((i) {
-            return Builder(
-              builder: (BuildContext context) {
-                return Container(
-                  width: MediaQuery.of(context).size.width,
-                  margin: EdgeInsets.symmetric(horizontal: 5.0),
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    'text $i',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 16.0),
-                  ),
-                );
-              },
-            );
-          }).toList(),
+          // items: [1, 2, 3, 4, 5].map((i) {
+          //   return Builder(
+          //     builder: (BuildContext context) {
+          //       return Container(
+          //         width: MediaQuery.of(context).size.width,
+          //         margin: EdgeInsets.symmetric(horizontal: 5.0),
+          //         decoration: BoxDecoration(
+          //           color: Colors.green,
+          //           borderRadius: BorderRadius.circular(12),
+          //         ),
+          //         child: Text(
+          //           'text $i',
+          //           textAlign: TextAlign.center,
+          //           style: TextStyle(fontSize: 16.0),
+          //         ),
+          //       );
+          //     },
+          //   );
+          // }).toList(),
+          items: [
+            buildItem(1),
+            buildItem(2),
+            buildItem(3),
+            buildItem(4),
+            buildItem(5),
+          ],
         ),
         const SizedBox(height: 8),
         SmoothPageIndicator(
@@ -70,6 +77,17 @@ class _HomeSliderState extends State<HomeSlider> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget buildItem(int i) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 5),
+      decoration: BoxDecoration(
+        color: Colors.green,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Center(child: Text('text $i')),
     );
   }
 }
