@@ -1,12 +1,10 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../../app/app_colors.dart';
+import '../../../../app/extensions/utils_extension.dart';
 
 class CategoryCard extends StatelessWidget {
-  const CategoryCard({
-    super.key,
-  });
+  const CategoryCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +18,17 @@ class CategoryCard extends StatelessWidget {
             color: AppColors.themeColor.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(12),
           ),
-          child: Icon(
-            Icons.computer,
-            size: 35,
+          child: Icon(Icons.computer, size: 35, color: AppColors.themeColor),
+        ),
+        Text(
+          "Electronics",
+          maxLines: 1,
+          overflow: .ellipsis,
+          style: context.textTheme.bodyMedium?.copyWith(
+            fontSize: 14,
             color: AppColors.themeColor,
           ),
         ),
-        Text("Electronics", style: TextStyle(fontSize: 16)),
       ],
     );
   }

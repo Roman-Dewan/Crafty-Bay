@@ -5,6 +5,7 @@ import '../../../../app/asset_paths.dart';
 import '../../../shared/presentation/widgets/category_card.dart';
 import '../widgets/app_bar_icon_button.dart';
 import '../widgets/home_slider.dart';
+import '../widgets/horizontal_product_list_view.dart';
 import '../widgets/search_text_field.dart';
 import '../widgets/section_header.dart';
 
@@ -24,19 +25,25 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            children: [
-              const SizedBox(height: 16),
-              const SearchTextField(),
-              const SizedBox(height: 16),
-              const HomeSlider(),
-              const SizedBox(height: 16),
-              SectionHeader(title: "All Categories", onTapSeeAll: () {}),
-              const SizedBox(height: 16),
-              // CategoryCard(),
-              _buildCategoryList(),
-              // 54 min
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(height: 16),
+                const SearchTextField(),
+                const SizedBox(height: 16),
+                const HomeSlider(),
+                const SizedBox(height: 16),
+                SectionHeader(title: "All Categories", onTapSeeAll: () {}),
+                const SizedBox(height: 16),
+                _buildCategoryList(),
+                SectionHeader(title: "Popular", onTapSeeAll: () {}),
+                const HorizontalProductListView(),
+                SectionHeader(title: "Special", onTapSeeAll: () {}),
+                const HorizontalProductListView(),
+                SectionHeader(title: "New", onTapSeeAll: () {}),
+                const HorizontalProductListView(),
+              ],
+            ),
           ),
         ),
       ),
@@ -84,4 +91,5 @@ class _HomeScreenState extends State<HomeScreen> {
   void _onTapCallAppBarButton() {}
   void _onTapNotificationAppBarButton() {}
 }
-// 102
+
+// 32 min.
