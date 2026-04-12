@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../app/asset_paths.dart';
+import '../../../shared/presentation/providers/bottom_nav_provider.dart';
 import '../../../shared/presentation/widgets/category_card.dart';
 import '../widgets/app_bar_icon_button.dart';
 import '../widgets/home_slider.dart';
@@ -22,27 +25,41 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const SizedBox(height: 16),
-                const SearchTextField(),
-                const SizedBox(height: 16),
-                const HomeSlider(),
-                const SizedBox(height: 16),
-                SectionHeader(title: "All Categories", onTapSeeAll: () {}),
-                const SizedBox(height: 16),
-                _buildCategoryList(),
-                SectionHeader(title: "Popular", onTapSeeAll: () {}),
-                const HorizontalProductListView(),
-                SectionHeader(title: "Special", onTapSeeAll: () {}),
-                const HorizontalProductListView(),
-                SectionHeader(title: "New", onTapSeeAll: () {}),
-                const HorizontalProductListView(),
-              ],
+      body: PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (didPop, result) {
+          if (didPop) {
+            return;
+          }
+          _onTapSystemBackButton();
+        },
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const SizedBox(height: 16),
+                  const SearchTextField(),
+                  const SizedBox(height: 16),
+                  const HomeSlider(),
+                  const SizedBox(height: 16),
+                  SectionHeader(
+                    title: "All Categories",
+                    onTapSeeAll: () => context
+                        .read<BottomNavProvider>()
+                        .moveToCategoryScreen(),
+                  ),
+                  const SizedBox(height: 16),
+                  _buildCategoryList(),
+                  SectionHeader(title: "Popular", onTapSeeAll: () {}),
+                  const HorizontalProductListView(),
+                  SectionHeader(title: "Special", onTapSeeAll: () {}),
+                  const HorizontalProductListView(),
+                  SectionHeader(title: "New", onTapSeeAll: () {}),
+                  const HorizontalProductListView(),
+                ],
+              ),
             ),
           ),
         ),
@@ -90,6 +107,29 @@ class _HomeScreenState extends State<HomeScreen> {
   void _onTapProfileAppBarButton() {}
   void _onTapCallAppBarButton() {}
   void _onTapNotificationAppBarButton() {}
+  void _onTapSystemBackButton() {
+    if (ModalRoute.of(context)?.canPop == true) {
+      Navigator.pop(context);
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text("Crafty Bay", textAlign: TextAlign.center),
+          content: const Text("Are you sure you want to exit?"),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text("No"),
+            ),
+            TextButton(
+              onPressed: () => SystemNavigator.pop(),
+              child: const Text("Yes"),
+            ),
+          ],
+        ),
+      );
+    }
+  }
 }
 
-// 32 min.
+// 50 min.

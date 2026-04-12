@@ -4,6 +4,7 @@ import '../features/auth/presentation/screens/otp_verification_screen.dart';
 import '../features/auth/presentation/screens/sign_in_screen.dart';
 import '../features/auth/presentation/screens/sign_up_screen.dart';
 import '../features/auth/presentation/screens/splash_screen.dart';
+import '../features/category/presentation/category_screen.dart';
 import '../features/home/presentation/screen/home_screen.dart';
 import '../features/shared/presentation/screens/bottom_nav_bar.dart';
 
@@ -28,6 +29,9 @@ class AppRoutes {
         break;
       case HomeScreen.name:
         widget = const HomeScreen();
+        break;
+      case CategoryScreen.name:
+        widget = const CategoryScreen();
         break;
       default:
     }

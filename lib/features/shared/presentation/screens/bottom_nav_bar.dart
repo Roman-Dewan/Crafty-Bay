@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../app/app_colors.dart';
+import '../../../category/presentation/category_screen.dart';
 import '../../../home/presentation/screen/home_screen.dart';
 import '../providers/bottom_nav_provider.dart';
 
@@ -15,10 +16,10 @@ class BottomNavBar extends StatefulWidget {
 
 class _BottomNavBarState extends State<BottomNavBar> {
   final List<Widget> screens = [
-    HomeScreen(),
-    SizedBox(),
-    SizedBox(),
-    SizedBox(),
+    const HomeScreen(),
+    const CategoryScreen(),
+    const SizedBox(),
+    const SizedBox(),
   ];
   @override
   Widget build(BuildContext context) {

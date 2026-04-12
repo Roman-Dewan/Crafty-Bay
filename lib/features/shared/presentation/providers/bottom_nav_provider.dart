@@ -8,4 +8,13 @@ class BottomNavProvider extends ChangeNotifier {
     _selectedIndex = index;
     notifyListeners();
   }
+
+  void moveToCategoryScreen() {
+    _selectedIndex = 1;
+    notifyListeners();
+  }
+  void moveToHomeScreen() {
+    _selectedIndex = 0;
+    notifyListeners();
+  }
 }

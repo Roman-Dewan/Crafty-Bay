@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'product_card.dart';
+import '../../../shared/presentation/widgets/product_card.dart';
 
 class HorizontalProductListView extends StatelessWidget {
   const HorizontalProductListView({super.key});
