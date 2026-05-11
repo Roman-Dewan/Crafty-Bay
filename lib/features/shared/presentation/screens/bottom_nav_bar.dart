@@ -1,3 +1,4 @@
+import 'package:crafty_bay/features/wishlist/presentation/wish_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +20,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     const HomeScreen(),
     const CategoryScreen(),
     const SizedBox(),
-    const SizedBox(),
+    const WishListScreen(),
   ];
   @override
   Widget build(BuildContext context) {

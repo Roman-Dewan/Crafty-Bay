@@ -8,6 +8,7 @@ import '../features/category/presentation/category_screen.dart';
 import '../features/home/presentation/screen/home_screen.dart';
 import '../features/products/presentation/product_list_screen.dart';
 import '../features/shared/presentation/screens/bottom_nav_bar.dart';
+import '../features/wishlist/presentation/wish_list_screen.dart';
 
 class AppRoutes {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSetting) {
@@ -33,6 +34,9 @@ class AppRoutes {
         break;
       case CategoryScreen.name:
         widget = const CategoryScreen();
+        break;
+      case WishListScreen.name:
+        widget = const WishListScreen();
         break;
       case ProductListScreen.name:
         final categoryName = routeSetting.arguments as String;
