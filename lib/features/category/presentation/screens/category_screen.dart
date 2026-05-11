@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../shared/presentation/providers/bottom_nav_provider.dart';
-import '../../shared/presentation/widgets/category_card.dart';
+import '../../../shared/presentation/providers/bottom_nav_provider.dart';
+import '../../../shared/presentation/widgets/category_card.dart';
 
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({super.key});

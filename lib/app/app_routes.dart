@@ -4,11 +4,11 @@ import '../features/auth/presentation/screens/otp_verification_screen.dart';
 import '../features/auth/presentation/screens/sign_in_screen.dart';
 import '../features/auth/presentation/screens/sign_up_screen.dart';
 import '../features/auth/presentation/screens/splash_screen.dart';
-import '../features/category/presentation/category_screen.dart';
+import '../features/category/presentation/screens/category_screen.dart';
 import '../features/home/presentation/screen/home_screen.dart';
-import '../features/products/presentation/product_list_screen.dart';
+import '../features/products/presentation/screens/product_list_screen.dart';
 import '../features/shared/presentation/screens/bottom_nav_bar.dart';
-import '../features/wishlist/presentation/wish_list_screen.dart';
+import '../features/wishlist/presentation/screens/wish_list_screen.dart';
 
 class AppRoutes {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSetting) {

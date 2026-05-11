@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 
-import '../../shared/presentation/widgets/product_card.dart';
+import '../../../shared/presentation/widgets/product_card.dart';
 
-class ProductListScreen extends StatefulWidget {
-  final String categoryName;
-  const ProductListScreen({super.key, required this.categoryName});
-  static const String name = "/product_list_screen";
+class WishListScreen extends StatefulWidget {
+  const WishListScreen({super.key});
+  static const String name = "/wish_list_screen";
 
   @override
-  State<ProductListScreen> createState() => _ProductListScreenState();
+  State<WishListScreen> createState() => _WishListScreenState();
 }
 
-class _ProductListScreenState extends State<ProductListScreen> {
+class _WishListScreenState extends State<WishListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.categoryName)),
+      appBar: AppBar(title: const Text("Wishlist")),
       body: SafeArea(
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
-            // mainAxisSpacing: 8,
+            mainAxisSpacing: 8,
             // crossAxisSpacing: 8,
           ),
           itemCount: 10,
