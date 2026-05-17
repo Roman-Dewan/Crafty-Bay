@@ -8,12 +8,16 @@ class HorizontalProductListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 180,
+      height: 200,
       child: ListView.builder(
         scrollDirection: .horizontal,
         itemCount: 10,
+        shrinkWrap: true,
         itemBuilder: (context, index) {
-          return ProductCard();
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: FittedBox(fit: BoxFit.scaleDown, child: const ProductCard()),
+          );
         },
       ),
     );

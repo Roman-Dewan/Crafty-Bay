@@ -19,10 +19,3 @@ void main() async {
   };
   runApp(const CraftyBayApp());
 }
-
-
-
-
-// Platform  Firebase App Id
-// android   1:19407502257:android:f6361ba2ca4f5598ec5b90
-// ios       1:19407502257:ios:6ccb934b248256a9ec5b90
