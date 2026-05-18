@@ -36,6 +36,8 @@
     "passwordLowercase": "অন্তত একটি ছোট হাতের অক্ষর থাকতে হবে",
     "passwordNumber": "অন্তত একটি সংখ্যা থাকতে হবে",
     "passwordsDoNotMatch": "পাসওয়ার্ড মিলছে না",
+    "reviewRequired": "রিভিউ দেওয়া আবশ্যক",
+    "submitReview": "রিভিউ সাবমিট করুন",
     
     "codeExpired": "কোডের মেয়াদ শেষ",
     "thisCodeWillExpireIn": "এই কোডের মেয়াদ শেষ হবে:",

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../app/app_colors.dart';
 import '../../../../app/extensions/utils_extension.dart';
 import '../widget/review_card.dart';
+import 'create_review_screen.dart';
 
 class ReviewScreen extends StatefulWidget {
   const ReviewScreen({super.key});
@@ -67,7 +68,9 @@ class _ReviewScreenState extends State<ReviewScreen> {
               shape: BoxShape.circle,
             ),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, CreateReviewScreen.name);
+              },
               icon: const Icon(Icons.add, size: 30, color: Colors.white),
             ),
           ),

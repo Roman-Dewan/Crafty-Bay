@@ -15,7 +15,7 @@ class HorizontalProductListView extends StatelessWidget {
         shrinkWrap: true,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.only(right: 8.0),
             child: FittedBox(fit: BoxFit.scaleDown, child: const ProductCard()),
           );
         },

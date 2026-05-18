@@ -36,6 +36,8 @@
     "passwordLowercase": "Must contain at least one lowercase letter",
     "passwordNumber": "Must contain at least one number",
     "passwordsDoNotMatch": "Passwords do not match",
+    "reviewRequired": "Review is required",
+    "submitReview": "Submit Review",
     
     "codeExpired": "Code expired",
     "thisCodeWillExpireIn": "This code will expire in:",
