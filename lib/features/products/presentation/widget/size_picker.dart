@@ -22,37 +22,42 @@ class SizePicker extends StatelessWidget {
       children: [
         Text("Size", style: context.textTheme.titleMedium),
         const SizedBox(height: 8),
-        Row(
-          spacing: 8,
-          children: sizes.map((size) {
-            final bool isSelected = selectedSize == size;
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            spacing: 8,
+            children: sizes.map((size) {
+              final bool isSelected = selectedSize == size;
 
-            return GestureDetector(
-              onTap: () => onChange(size),
-              child: Container(
-                width: 40,
-                height: 40,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: isSelected ? AppColors.themeColor : Colors.transparent,
-                  border: Border.all(
+              return GestureDetector(
+                onTap: () => onChange(size),
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
                     color: isSelected
                         ? AppColors.themeColor
-                        : Colors.grey.shade400,
-                    width: 1.5,
+                        : Colors.transparent,
+                    border: Border.all(
+                      color: isSelected
+                          ? AppColors.themeColor
+                          : Colors.grey.shade400,
+                      width: 1.5,
+                    ),
+                  ),
+                  child: Text(
+                    size,
+                    style: context.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: isSelected ? Colors.white : Colors.black87,
+                    ),
                   ),
                 ),
-                child: Text(
-                  size,
-                  style: context.textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: isSelected ? Colors.white : Colors.black87,
-                  ),
-                ),
-              ),
-            );
-          }).toList(),
+              );
+            }).toList(),
+          ),
         ),
       ],
     );
