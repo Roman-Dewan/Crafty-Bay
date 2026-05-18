@@ -4,6 +4,7 @@ import '../features/auth/presentation/screens/otp_verification_screen.dart';
 import '../features/auth/presentation/screens/sign_in_screen.dart';
 import '../features/auth/presentation/screens/sign_up_screen.dart';
 import '../features/auth/presentation/screens/splash_screen.dart';
+import '../features/cart/presentation/screens/cart_screen.dart';
 import '../features/category/presentation/screens/category_screen.dart';
 import '../features/home/presentation/screen/home_screen.dart';
 import '../features/products/presentation/screens/create_review_screen.dart';
@@ -53,6 +54,9 @@ class AppRoutes {
         break;
       case CreateReviewScreen.name:
         widget = const CreateReviewScreen();
+        break;
+      case CartScreen.name:
+        widget = const CartScreen();
         break;
       default:
     }
