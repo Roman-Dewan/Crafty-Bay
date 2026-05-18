@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../app/app_colors.dart';
+import '../../../../app/extensions/localization_extension.dart';
 import '../../../cart/presentation/screens/cart_screen.dart';
 import '../../../category/presentation/screens/category_screen.dart';
 import '../../../home/presentation/screen/home_screen.dart';
@@ -34,19 +35,22 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 bottomNavProvider.updateIndex(index),
             selectedIndex: bottomNavProvider.selectedIndex,
             indicatorColor: AppColors.themeColor,
-            destinations: const [
-              NavigationDestination(icon: Icon(Icons.home), label: "Home"),
+            destinations: [
               NavigationDestination(
-                icon: Icon(Icons.dashboard),
-                label: "Categories",
+                icon: const Icon(Icons.home),
+                label: context.l10n.home,
               ),
               NavigationDestination(
-                icon: Icon(Icons.shopping_cart),
-                label: "Cart",
+                icon: const Icon(Icons.dashboard),
+                label: context.l10n.categories,
               ),
               NavigationDestination(
-                icon: Icon(Icons.favorite_outline),
-                label: "Wishlist",
+                icon: const Icon(Icons.shopping_cart),
+                label: context.l10n.cart,
+              ),
+              NavigationDestination(
+                icon: const Icon(Icons.favorite_outline),
+                label: context.l10n.wishlist,
               ),
             ],
           ),

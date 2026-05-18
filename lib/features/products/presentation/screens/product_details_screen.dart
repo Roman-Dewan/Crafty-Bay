@@ -4,6 +4,7 @@ import 'package:crafty_bay/features/shared/presentation/widgets/increment_decrem
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../app/extensions/localization_extension.dart';
 import '../../../../app/extensions/utils_extension.dart';
 import '../../../shared/presentation/widgets/favorite_icon_widget.dart';
 import '../../../shared/presentation/widgets/rating_widget.dart';
@@ -35,7 +36,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           onPressed: () => Navigator.pop(context),
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
-        title: const Text('Product Details'),
+        title: Text(context.l10n.productDetails),
       ),
       body: Column(
         children: [
@@ -84,7 +85,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           onPressed: () {
             Navigator.pushNamed(context, ReviewScreen.name);
           },
-          child: const Text("Reviews"),
+          child: Text(context.l10n.reviews),
         ),
         const FavoriteIconWidget(),
       ],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../app/extensions/localization_extension.dart';
+
 class SearchTextField extends StatelessWidget {
   const SearchTextField({super.key});
 
@@ -19,7 +21,7 @@ class SearchTextField extends StatelessWidget {
           borderSide: BorderSide.none,
         ),
         prefixIcon: Icon(Icons.search),
-        hintText: "Search",
+        hintText: context.l10n.search,
       ),
     );
   }

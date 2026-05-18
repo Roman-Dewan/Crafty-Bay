@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../app/extensions/localization_extension.dart';
 import '../../../../app/extensions/utils_extension.dart';
 
 class SectionHeader extends StatelessWidget {
@@ -14,10 +15,10 @@ class SectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: .spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(title, style: context.textTheme.titleMedium),
-        TextButton(onPressed: onTapSeeAll, child: Text("See All")),
+        TextButton(onPressed: onTapSeeAll, child: Text(context.l10n.seeAll)),
       ],
     );
   }

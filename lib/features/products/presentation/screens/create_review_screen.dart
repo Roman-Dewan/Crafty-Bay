@@ -35,7 +35,7 @@ class _CreateReviewScreenState extends State<CreateReviewScreen> {
           onPressed: () => Navigator.pop(context),
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
-        title: const Text('Create Review'),
+        title: Text(context.l10n.createReview),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -43,7 +43,7 @@ class _CreateReviewScreenState extends State<CreateReviewScreen> {
           child: Form(
             key: _formKey,
             child: Column(
-              mainAxisAlignment: .center,
+              mainAxisAlignment: MainAxisAlignment.center,
               spacing: 12,
               children: [
                 TextFormField(
@@ -52,7 +52,7 @@ class _CreateReviewScreenState extends State<CreateReviewScreen> {
                     value,
                     msg: context.l10n.firstNameRequired,
                   ),
-                  decoration: InputDecoration(hintText: "First Name"),
+                  decoration: InputDecoration(hintText: context.l10n.firstName),
                 ),
                 TextFormField(
                   validator: (value) => Validators.validatorText(
@@ -60,7 +60,7 @@ class _CreateReviewScreenState extends State<CreateReviewScreen> {
                     msg: context.l10n.lastNameRequired,
                   ),
                   controller: lastNameController,
-                  decoration: InputDecoration(hintText: "Last Name"),
+                  decoration: InputDecoration(hintText: context.l10n.lastName),
                 ),
                 TextFormField(
                   maxLines: 5,
@@ -70,7 +70,7 @@ class _CreateReviewScreenState extends State<CreateReviewScreen> {
                     msg: context.l10n.reviewRequired,
                   ),
                   decoration: InputDecoration(
-                    hintText: "Write Review",
+                    hintText: context.l10n.writeReview,
                     contentPadding: EdgeInsets.only(
                       top: 12,
                       left: 12,
@@ -82,7 +82,7 @@ class _CreateReviewScreenState extends State<CreateReviewScreen> {
                 const SizedBox(height: 20),
                 FilledButton(
                   onPressed: () => _submitForm(),
-                  child: const Text("Submit"),
+                  child: Text(context.l10n.submit),
                 ),
               ],
             ),

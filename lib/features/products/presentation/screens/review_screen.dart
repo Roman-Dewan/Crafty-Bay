@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../app/app_colors.dart';
+import '../../../../app/extensions/localization_extension.dart';
 import '../../../../app/extensions/utils_extension.dart';
 import '../widget/review_card.dart';
 import 'create_review_screen.dart';
@@ -24,7 +25,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
           onPressed: () => Navigator.pop(context),
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
-        title: const Text('Reviews'),
+        title: Text(context.l10n.reviews),
       ),
       body: Column(
         children: [
@@ -60,7 +61,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
       child: Row(
         children: [
           const SizedBox(width: 20),
-          Text("Reviews (1000)", style: context.textTheme.titleMedium),
+          Text("${context.l10n.reviews} (1000)", style: context.textTheme.titleMedium),
           const Spacer(),
           Container(
             decoration: BoxDecoration(

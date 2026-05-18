@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../app/app_colors.dart';
+import '../../../../app/extensions/localization_extension.dart';
 import '../../../../app/extensions/utils_extension.dart';
 
 class SizePicker extends StatelessWidget {
@@ -20,7 +21,7 @@ class SizePicker extends StatelessWidget {
     return Column(
       crossAxisAlignment: .start,
       children: [
-        Text("Size", style: context.textTheme.titleMedium),
+        Text(context.l10n.size, style: context.textTheme.titleMedium),
         const SizedBox(height: 8),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,

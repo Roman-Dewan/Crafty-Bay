@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../app/app_colors.dart';
 import '../../../../app/app_constants.dart';
+import '../../../../app/extensions/localization_extension.dart';
 import '../../../../app/extensions/utils_extension.dart';
 
 class CartBottomWidget extends StatelessWidget {
@@ -27,13 +28,13 @@ class CartBottomWidget extends StatelessWidget {
         ),
       ),
       child: Row(
-        mainAxisAlignment: .spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
-            crossAxisAlignment: .start,
-            mainAxisAlignment: .center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Total Price", style: context.textTheme.bodyMedium),
+              Text(context.l10n.totalPrice, style: context.textTheme.bodyMedium),
               Text(
                 "${AppConstants.takaSymbol}$price",
                 style: context.textTheme.titleMedium?.copyWith(
@@ -46,7 +47,7 @@ class CartBottomWidget extends StatelessWidget {
           FilledButton(
             style: FilledButton.styleFrom(fixedSize: Size.fromWidth(150)),
             onPressed: onTapCheckout,
-            child: Text("Checkout"),
+            child: Text(context.l10n.checkout),
           ),
         ],
       ),

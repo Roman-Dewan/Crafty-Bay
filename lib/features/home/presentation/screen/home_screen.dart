@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../app/asset_paths.dart';
+import '../../../../app/extensions/localization_extension.dart';
 import '../../../shared/presentation/providers/bottom_nav_provider.dart';
 import '../../../shared/presentation/widgets/category_card.dart';
 import '../widgets/app_bar_icon_button.dart';
@@ -45,18 +46,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   const HomeSlider(),
                   const SizedBox(height: 16),
                   SectionHeader(
-                    title: "All Categories",
+                    title: context.l10n.allCategories,
                     onTapSeeAll: () => context
                         .read<BottomNavProvider>()
                         .moveToCategoryScreen(),
                   ),
                   const SizedBox(height: 16),
                   _buildCategoryList(),
-                  SectionHeader(title: "Popular", onTapSeeAll: () {}),
+                  SectionHeader(title: context.l10n.popular, onTapSeeAll: () {}),
                   const HorizontalProductListView(),
-                  SectionHeader(title: "Special", onTapSeeAll: () {}),
+                  SectionHeader(title: context.l10n.special, onTapSeeAll: () {}),
                   const HorizontalProductListView(),
-                  SectionHeader(title: "New", onTapSeeAll: () {}),
+                  SectionHeader(title: context.l10n.newProducts, onTapSeeAll: () {}),
                   const HorizontalProductListView(),
                 ],
               ),
@@ -115,15 +116,15 @@ class _HomeScreenState extends State<HomeScreen> {
         context: context,
         builder: (context) => AlertDialog(
           title: const Text("Crafty Bay", textAlign: TextAlign.center),
-          content: const Text("Are you sure you want to exit?"),
+          content: Text(context.l10n.exitPrompt),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text("No"),
+              child: Text(context.l10n.no),
             ),
             TextButton(
               onPressed: () => SystemNavigator.pop(),
-              child: const Text("Yes"),
+              child: Text(context.l10n.yes),
             ),
           ],
         ),

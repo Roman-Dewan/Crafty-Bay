@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../app/app_colors.dart';
 import '../../../../app/app_constants.dart';
 import '../../../../app/asset_paths.dart';
+import '../../../../app/extensions/localization_extension.dart';
 import '../../../../app/extensions/utils_extension.dart';
 import '../../../shared/presentation/widgets/increment_decrement_button.dart';
 
@@ -65,7 +66,7 @@ class SelectedCard extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      "Color: Red   Size: M",
+                      "${context.l10n.color}: Red   ${context.l10n.size}: M",
                       style: context.textTheme.bodySmall?.copyWith(
                         color: Colors.grey,
                       ),

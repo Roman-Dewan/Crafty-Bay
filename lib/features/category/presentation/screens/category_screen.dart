@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../app/extensions/localization_extension.dart';
 import '../../../shared/presentation/providers/bottom_nav_provider.dart';
 import '../../../shared/presentation/widgets/category_card.dart';
 
@@ -29,7 +30,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
             icon: const Icon(Icons.arrow_back_ios_new_rounded),
             onPressed: _onTapBackButton,
           ),
-          title: const Text("Categories"),
+          title: Text(context.l10n.categories),
         ),
         body: SafeArea(
           child: GridView.builder(

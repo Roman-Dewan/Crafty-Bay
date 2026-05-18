@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../app/extensions/localization_extension.dart';
 import '../../../../app/extensions/utils_extension.dart';
 
 class ColorPicker extends StatelessWidget {
@@ -19,7 +20,7 @@ class ColorPicker extends StatelessWidget {
     return Column(
       crossAxisAlignment: .start,
       children: [
-        Text("Color", style: context.textTheme.titleMedium),
+        Text(context.l10n.color, style: context.textTheme.titleMedium),
         const SizedBox(height: 8),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,

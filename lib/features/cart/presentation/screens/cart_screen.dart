@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../app/extensions/localization_extension.dart';
 import '../../../shared/presentation/providers/bottom_nav_provider.dart';
 import '../widgets/cart_widget.dart';
 import '../widgets/selected_card.dart';
@@ -32,7 +33,7 @@ class _CartScreenState extends State<CartScreen> {
             onPressed: _onTapBackButton,
             icon: const Icon(Icons.arrow_back_ios_new),
           ),
-          title: const Text('Cart'),
+          title: Text(context.l10n.cart),
         ),
         body: Column(
           children: [

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../app/extensions/localization_extension.dart';
 import '../../../shared/presentation/widgets/product_card.dart';
 
 class WishListScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class _WishListScreenState extends State<WishListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Wishlist")),
+      appBar: AppBar(title: Text(context.l10n.wishlist)),
       body: SafeArea(
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
