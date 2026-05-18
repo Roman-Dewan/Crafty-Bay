@@ -1,11 +1,16 @@
+import 'dart:developer';
+
 import 'package:crafty_bay/features/shared/presentation/widgets/increment_decrement_button.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../app/extensions/utils_extension.dart';
 import '../../../shared/presentation/widgets/favorite_icon_widget.dart';
 import '../../../shared/presentation/widgets/rating_widget.dart';
+import '../widget/color_picker.dart';
 import '../widget/product_image_caruosol.dart';
 import '../widget/price_and_add_to_cart_section.dart';
+import '../widget/size_picker.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   const ProductDetailsScreen({super.key});
@@ -16,6 +21,9 @@ class ProductDetailsScreen extends StatefulWidget {
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+  String? _selectedSize;
+  Color? _selectedColor;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,53 +33,118 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         centerTitle: true,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: Icon(Icons.arrow_back_ios_new),
+          icon: const Icon(Icons.arrow_back_ios_new),
         ),
         title: const Text('Product Details'),
       ),
       body: Column(
         children: [
           Expanded(
-            child: Column(
-              children: [
-                ProductImageCaruosol(),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              children: [
-                                Text(
-                                  "Nike 2026 - New Year Special Collection",
-                                  style: context.textTheme.bodyLarge?.copyWith(
-                                    fontWeight: .bold,
-                                  ),
-                                ),
-                              ],
-                            ),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const ProductImageCaruosol(),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: .start,
+                      children: [
+                        _buildTitleSection(context),
+                        _ratingReviewSection(),
+                        _buildColorAndSizePicker(context),
+                        const SizedBox(height: 8),
+                        Text(
+                          "Description",
+                          style: context.textTheme.titleMedium,
+                        ),
+                        Text(
+                          """This is product description. It is a long established fact that a reader will be distracted by the rhis is product description. It is a long established fact that a reader will be distracted by the rhis is product description. It is a long established fact that a reader will be distracted by the rhis is product description. It is a long established fact that a reader will be distracted by the rhis is product description. It is a long established fact that a reader will be distracted by the rhis is product description. It is a long established fact that a reader will be distracted by the rhis is product description. It is a long established fact that a reader will be distracted by the rhis is product description. It is a long established fact that a reader will be distracted by the rseadable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.""",
+                          style: context.textTheme.bodyMedium?.copyWith(
+                            color: Colors.grey.shade800,
                           ),
-                          IncrementDecrementButton(onChange: (int count) {}),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          RatingWidget(rating: 4.2),
-                          TextButton(onPressed: () {}, child: Text("Reviews")),
-                          FavoriteIconWidget(),
-                        ],
-                      ),
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           PriceAndAddToCartSection(price: 2000, onTapAddTocart: () {}),
         ],
       ),
+    );
+  }
+
+  Widget _ratingReviewSection() {
+    return Row(
+      children: [
+        const RatingWidget(rating: 4.2),
+        TextButton(onPressed: () {}, child: const Text("Reviews")),
+        const FavoriteIconWidget(),
+      ],
+    );
+  }
+
+  Widget _buildTitleSection(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: Column(
+            children: [
+              Text(
+                "Nike 2026 - New Year Special Collection",
+                style: context.textTheme.bodyLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+        IncrementDecrementButton(onChange: (int count) {}),
+      ],
+    );
+  }
+
+  Widget _buildColorAndSizePicker(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Color picker
+        ColorPicker(
+          colors: const [
+            Colors.red,
+            Colors.blue,
+            Colors.green,
+            Colors.yellow,
+            Colors.black,
+            Colors.purple,
+            Colors.orange,
+            Colors.pink,
+          ],
+          selectedColor: _selectedColor,
+          onChange: (Color color) {
+            setState(() {
+              _selectedColor = color;
+            });
+            if (kDebugMode) log("Selected color is : $color");
+          },
+        ),
+
+        const SizedBox(height: 8),
+
+        // portion picker
+        SizePicker(
+          sizes: const ["S", "M", "L", "XL", "XXL"],
+          selectedSize: _selectedSize,
+          onChange: (String size) {
+            setState(() {
+              _selectedSize = size;
+            });
+            if (kDebugMode) log("Selected size is : $size");
+          },
+        ),
+      ],
     );
   }
 }
