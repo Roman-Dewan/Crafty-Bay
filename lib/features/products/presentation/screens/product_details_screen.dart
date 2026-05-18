@@ -11,6 +11,7 @@ import '../widget/color_picker.dart';
 import '../widget/product_image_caruosol.dart';
 import '../widget/price_and_add_to_cart_section.dart';
 import '../widget/size_picker.dart';
+import 'review_screen.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   const ProductDetailsScreen({super.key});
@@ -30,7 +31,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        centerTitle: true,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
           icon: const Icon(Icons.arrow_back_ios_new),
@@ -50,7 +50,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       crossAxisAlignment: .start,
                       children: [
                         _buildTitleSection(context),
-                        _ratingReviewSection(),
+                        _ratingReviewSection(context),
                         _buildColorAndSizePicker(context),
                         const SizedBox(height: 8),
                         Text(
@@ -76,11 +76,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  Widget _ratingReviewSection() {
+  Widget _ratingReviewSection(BuildContext context) {
     return Row(
       children: [
         const RatingWidget(rating: 4.2),
-        TextButton(onPressed: () {}, child: const Text("Reviews")),
+        TextButton(
+          onPressed: () {
+            Navigator.pushNamed(context, ReviewScreen.name);
+          },
+          child: const Text("Reviews"),
+        ),
         const FavoriteIconWidget(),
       ],
     );
