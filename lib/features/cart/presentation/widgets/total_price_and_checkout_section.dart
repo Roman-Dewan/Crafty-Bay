@@ -5,8 +5,8 @@ import '../../../../app/app_constants.dart';
 import '../../../../app/extensions/localization_extension.dart';
 import '../../../../app/extensions/utils_extension.dart';
 
-class CartBottomWidget extends StatelessWidget {
-  const CartBottomWidget({
+class TotalPriceAndCheckoutSection extends StatelessWidget {
+  const TotalPriceAndCheckoutSection({
     super.key,
     required this.price,
     required this.onTapCheckout,

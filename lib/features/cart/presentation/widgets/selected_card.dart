@@ -13,40 +13,25 @@ class SelectedCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: Container(
-        height: 120,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Container(
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: Colors.white,
-                ),
-                child: Image.asset(AssetPaths.dummyImage, fit: BoxFit.cover),
-              ),
-            ),
-            Expanded(
-              flex: 5,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
+      color: Colors.white,
+      shadowColor: AppColors.themeColor.withAlpha(100),
+      elevation: 5,
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(AssetPaths.dummyImage, height: 100, width: 100),
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                Row(
                   children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Text(
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
                             "New Year Special Shoe",
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
@@ -54,42 +39,42 @@ class SelectedCard extends StatelessWidget {
                               fontWeight: .w600,
                             ),
                           ),
-                        ),
-                        IconButton(
-                          onPressed: _onTapDeleteButton,
-                          icon: const Icon(
-                            Icons.delete,
-                            color: Colors.red,
-                            size: 20,
+                          Text(
+                            "${context.l10n.color}: Red   ${context.l10n.size}: M",
+                            style: context.textTheme.bodyMedium?.copyWith(
+                              color: Colors.black.withAlpha(400),
+                              fontWeight: .w400,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Text(
-                      "${context.l10n.color}: Red   ${context.l10n.size}: M",
-                      style: context.textTheme.bodySmall?.copyWith(
-                        color: Colors.grey,
+                        ],
                       ),
                     ),
-                    const Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "${AppConstants.takaSymbol}100",
-                          style: context.textTheme.titleMedium?.copyWith(
-                            color: AppColors.themeColor,
-                          ),
-                        ),
-                        IncrementDecrementButton(onChange: (int count) {}),
-                      ],
+                    IconButton(
+                      onPressed: _onTapDeleteButton,
+                      icon: const Icon(
+                        Icons.delete,
+                        color: Colors.red,
+                        size: 25,
+                      ),
                     ),
                   ],
                 ),
-              ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "${AppConstants.takaSymbol}100",
+                      style: context.textTheme.titleMedium?.copyWith(
+                        color: AppColors.themeColor,
+                      ),
+                    ),
+                    IncrementDecrementButton(onChange: (int count) {}),
+                  ],
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

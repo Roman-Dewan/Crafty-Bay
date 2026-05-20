@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../app/extensions/localization_extension.dart';
 import '../../../shared/presentation/providers/bottom_nav_provider.dart';
-import '../widgets/cart_widget.dart';
+import '../widgets/total_price_and_checkout_section.dart';
 import '../widgets/selected_card.dart';
 
 class CartScreen extends StatefulWidget {
@@ -49,7 +49,7 @@ class _CartScreenState extends State<CartScreen> {
                 },
               ),
             ),
-            CartBottomWidget(price: 2000, onTapCheckout: () {}),
+            TotalPriceAndCheckoutSection(price: 2000, onTapCheckout: () {}),
           ],
         ),
       ),

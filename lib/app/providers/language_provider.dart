@@ -23,4 +23,16 @@ class LanguageProvider extends ChangeNotifier {
         return locale.languageCode;
     }
   }
+
+  // // Helper methods for UI
+  // bool isEnglish() => _currentLocale.languageCode == 'en';
+  // bool isBangla() => _currentLocale.languageCode == 'bn';
+
+  // void toggleLanguage() {
+  //   if (isEnglish()) {
+  //     changeLocale(const Locale('bn'));
+  //   } else {
+  //     changeLocale(const Locale('en'));
+  //   }
+  // }
 }
