@@ -1,12 +1,14 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
+import 'package:logger/web.dart';
 
-import '../models/network_response.dart';
+part '../models/network_response.dart';
 
 class NetworkCaller {
   final Map<String, String> headers;
   final VoidCallback onUnauthorized;
+  final Logger _logger = Logger();
 
   NetworkCaller({required this.headers, required this.onUnauthorized});
 
@@ -100,25 +102,21 @@ class NetworkCaller {
     }
   }
 
-  static void _logRequest(String url, {Map<String, dynamic>? body}) {
+  void _logRequest(String url, {Map<String, dynamic>? body}) {
     if (kDebugMode) {
-      debugPrint(
-        "\n ==================== Request ==================== \n"
-        "Url: $url\n"
-        "Body: $body\n"
-        "==================== End Request ====================\n",
+      _logger.i(
+        "Url: $url \n "
+        " Body: $body",
       );
     }
   }
 
-  static void _logResponse(String url, Response response) {
+  void _logResponse(String url, Response response) {
     if (kDebugMode) {
-      debugPrint(
-        "\n ==================== Response ==================== \n"
+      _logger.i(
         "Url: $url\n"
         "Status Code: ${response.statusCode}\n"
-        "Body: ${response.body}\n"
-        "==================== End Response ====================\n",
+        "Body: ${response.body}",
       );
     }
   }
