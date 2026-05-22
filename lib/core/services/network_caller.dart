@@ -34,13 +34,13 @@ class NetworkCaller {
         return NetworkResponse(
           isSuccess: false,
           statusCode: response.statusCode,
-          error: "Un-authorized",
+          errorMessage: "Un-authorized",
         );
       } else {
         return NetworkResponse(
           isSuccess: false,
           statusCode: response.statusCode,
-          error: decodedData['data'],
+          errorMessage: decodedData['msg'],
 
           /// [Decouple] korte hobe
         );
@@ -49,7 +49,7 @@ class NetworkCaller {
       return NetworkResponse(
         isSuccess: false,
         statusCode: -1,
-        error: e.toString(),
+        errorMessage: e.toString(),
       );
     }
   }
@@ -73,7 +73,7 @@ class NetworkCaller {
 
       final decodedData = jsonDecode(response.body);
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201 || response.statusCode == 200) {
         return NetworkResponse(
           isSuccess: true,
           statusCode: response.statusCode,
@@ -84,27 +84,27 @@ class NetworkCaller {
         return NetworkResponse(
           isSuccess: false,
           statusCode: response.statusCode,
-          error: "Un-Authorized",
+          errorMessage: "Un-Authorized",
         );
       } else {
         return NetworkResponse(
           isSuccess: false,
           statusCode: response.statusCode,
-          error: decodedData['data'],
+          errorMessage: decodedData['msg'],
         );
       }
     } catch (e) {
       return NetworkResponse(
         isSuccess: false,
         statusCode: -1,
-        error: e.toString(),
+        errorMessage: e.toString(),
       );
     }
   }
 
   void _logRequest(String url, {Map<String, dynamic>? body}) {
     if (kDebugMode) {
-      _logger.i(
+      _logger.t(
         "Url: $url \n "
         " Body: $body",
       );
@@ -113,7 +113,7 @@ class NetworkCaller {
 
   void _logResponse(String url, Response response) {
     if (kDebugMode) {
-      _logger.i(
+      _logger.t(
         "Url: $url\n"
         "Status Code: ${response.statusCode}\n"
         "Body: ${response.body}",

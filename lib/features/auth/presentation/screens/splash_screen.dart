@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../shared/presentation/screens/bottom_nav_bar.dart';
+// import '../../../shared/presentation/screens/bottom_nav_bar.dart';
 import '../widgets/app_logo.dart';
+import 'sign_up_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -21,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _navigateToNextScreen() async {
     await Future.delayed(const Duration(seconds: 5));
     if (mounted) {
-      Navigator.pushReplacementNamed(context, BottomNavBar.name);
+      Navigator.pushReplacementNamed(context, SignUpScreen.name);
     }
   }
 
