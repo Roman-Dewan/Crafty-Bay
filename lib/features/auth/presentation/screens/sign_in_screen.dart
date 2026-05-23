@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../app/extensions/localization_extension.dart';
 import '../../../../app/extensions/utils_extension.dart';
 import '../../../shared/presentation/screens/bottom_nav_bar.dart';
 import '../../../shared/presentation/utils/validators.dart';
+import '../../../shared/presentation/widgets/snac_bar_message.dart';
+import '../providers/sign_in_provider.dart';
 import '../widgets/app_logo.dart';
+import 'sign_up_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -23,72 +27,87 @@ class _SignInScreenState extends State<SignInScreen> {
   final _cityController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  final SignInProvider _signInProvider = SignInProvider();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Form(
-            key: _formKey,
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 64),
-                  AppLogo(),
-                  const SizedBox(height: 16),
-                  Text(
-                    context.l10n.signInWithEmail,
-                    style: context.textTheme.titleLarge,
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    context.l10n.getStartedDetails,
-                    style: context.textTheme.bodyMedium?.copyWith(
-                      color: Colors.grey,
+    return ChangeNotifierProvider.value(
+      value: _signInProvider,
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Form(
+              key: _formKey,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 64),
+                    AppLogo(),
+                    const SizedBox(height: 16),
+                    Text(
+                      context.l10n.signInWithEmail,
+                      style: context.textTheme.titleLarge,
                     ),
-                  ),
-                  const SizedBox(height: 24),
-                  TextFormField(
-                    controller: _emailController,
-                    decoration: InputDecoration(hintText: context.l10n.email),
-                    validator: (value) => Validators.validatorEmail(
-                      value,
-                      requiredMsg: context.l10n.emailRequired,
-                      invalidMsg: context.l10n.invalidEmail,
+                    const SizedBox(height: 4),
+                    Text(
+                      context.l10n.getStartedDetails,
+                      style: context.textTheme.bodyMedium?.copyWith(
+                        color: Colors.grey,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  TextFormField(
-                    controller: _passwordController,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      hintText: context.l10n.password,
+                    const SizedBox(height: 24),
+                    TextFormField(
+                      controller: _emailController,
+                      decoration: InputDecoration(hintText: context.l10n.email),
+                      validator: (value) => Validators.validatorEmail(
+                        value,
+                        requiredMsg: context.l10n.emailRequired,
+                        invalidMsg: context.l10n.invalidEmail,
+                      ),
                     ),
-                    validator: (value) => Validators.validatorPassword(
-                      value,
-                      requiredMsg: context.l10n.passwordRequired,
-                      lengthMsg: context.l10n.passwordLength,
-                      uppercaseMsg: context.l10n.passwordUppercase,
-                      lowercaseMsg: context.l10n.passwordLowercase,
-                      numberMsg: context.l10n.passwordNumber,
+                    const SizedBox(height: 8),
+                    TextFormField(
+                      controller: _passwordController,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        hintText: context.l10n.password,
+                      ),
+                      validator: (value) => Validators.validatorPassword(
+                        value,
+                        requiredMsg: context.l10n.passwordRequired,
+                        lengthMsg: context.l10n.passwordLength,
+                        uppercaseMsg: context.l10n.passwordUppercase,
+                        lowercaseMsg: context.l10n.passwordLowercase,
+                        numberMsg: context.l10n.passwordNumber,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  FilledButton(
-                    onPressed: _onTapSignInButton,
-                    child: Text(context.l10n.signIn),
-                  ),
-                  const SizedBox(height: 16),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text(context.l10n.dontHaveAccount),
-                  ),
-                ],
+                    const SizedBox(height: 16),
+                    Consumer<SignInProvider>(
+                      builder: (context, _, _) {
+                        return Visibility(
+                          visible: _signInProvider.signInProgress == false,
+                          replacement: const CircularProgressIndicator(),
+                          child: FilledButton(
+                            onPressed: _onTapSignInButton,
+                            child: Text(context.l10n.signIn),
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    TextButton(
+                      onPressed: () {
+                        if (mounted) {
+                          Navigator.pushNamed(context, SignUpScreen.name);
+                        }
+                      },
+                      child: Text(context.l10n.dontHaveAccount),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -97,11 +116,24 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  void _onTapSignInButton() {
-    // if (_formKey.currentState!.validate()) {
-    //
-    // Navigator.pushNamed(context, OtpVerificationScreen.name);
-    Navigator.pushNamed(context, BottomNavBar.name);
+  Future<void> _onTapSignInButton() async {
+    if (_formKey.currentState!.validate()) {
+      final isSuccess = await _signInProvider.signIn(
+        email: _emailController.text.trim(),
+        password: _passwordController.text,
+      );
+      if (!mounted) return;
+      if (isSuccess) {
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          BottomNavBar.name,
+          (route) => false,
+        );
+        snackBarMessage(context, _signInProvider.successMessage!, true);
+      } else {
+        snackBarMessage(context, _signInProvider.errorMessage!, false);
+      }
+    }
   }
 
   @override

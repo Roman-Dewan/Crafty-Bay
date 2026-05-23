@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-// import '../../../shared/presentation/screens/bottom_nav_bar.dart';
+import '../../../../app/controllers/auth_controllers.dart';
+import '../../../shared/presentation/screens/bottom_nav_bar.dart';
 import '../widgets/app_logo.dart';
-import 'sign_up_screen.dart';
+import 'sign_in_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -20,9 +21,23 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _navigateToNextScreen() async {
-    await Future.delayed(const Duration(seconds: 5));
-    if (mounted) {
-      Navigator.pushReplacementNamed(context, SignUpScreen.name);
+    await Future.delayed(const Duration(seconds: 3));
+
+    final loggdIn = await AuthControllers.isUserLoggedIn();
+    if (!mounted) return;
+
+    if (loggdIn) {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        BottomNavBar.name,
+        (route) => false,
+      );
+    } else {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        SignInScreen.name,
+        (route) => false,
+      );
     }
   }
 

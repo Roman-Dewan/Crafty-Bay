@@ -203,7 +203,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           OtpVerificationScreen.name,
           arguments: _emailController.text.trim(),
         );
-        snackBarMessage(_context, "Please verify your email address", true);
+        snackBarMessage(_context, _signUpProvider.successMessage!, true);
       }
     } else {
       if (mounted) {

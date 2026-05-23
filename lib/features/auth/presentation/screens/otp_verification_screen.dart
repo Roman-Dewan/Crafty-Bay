@@ -117,7 +117,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     );
     if (mounted) {
       if (isSuccess) {
-        snackBarMessage(context, "OTP verified successfully", true);
+        snackBarMessage(context, _verifyOtpProvider.successMessage!, true);
         Navigator.pushNamedAndRemoveUntil(
           context,
           BottomNavBar.name,

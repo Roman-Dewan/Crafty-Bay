@@ -6,11 +6,11 @@ import '../../../../app/urls.dart';
 import '../../../../core/services/network_caller.dart';
 import '../../data/models/user_model.dart';
 
-class VerifyOtpProvider extends ChangeNotifier {
+class SignInProvider extends ChangeNotifier {
   bool isSuccess = false;
 
-  bool? _verifyOtpProgress = false;
-  bool? get verifyOtpProgress => _verifyOtpProgress;
+  bool? _signInProgress = false;
+  bool? get signInProgress => _signInProgress;
 
   String? _errorMessage;
   String? get errorMessage => _errorMessage;
@@ -18,14 +18,14 @@ class VerifyOtpProvider extends ChangeNotifier {
   String? _successMessage;
   String? get successMessage => _successMessage;
 
-  Future<bool> verifyOtp({required String email, required String otp}) async {
-    _verifyOtpProgress = true;
+  Future<bool> signIn({required String email, required String password}) async {
+    _signInProgress = true;
     notifyListeners();
 
     try {
       final NetworkResponse response = await getNetworkCaller().postRequest(
-        Urls.verifyOtpUrl,
-        body: {"email": email, "otp": otp},
+        Urls.signInUrl,
+        body: {"email": email, "password": password},
       );
 
       if (response.isSuccess) {
@@ -47,7 +47,7 @@ class VerifyOtpProvider extends ChangeNotifier {
       _errorMessage = e.toString();
     }
 
-    _verifyOtpProgress = false;
+    _signInProgress = false;
     notifyListeners();
 
     return isSuccess;

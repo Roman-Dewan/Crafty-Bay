@@ -14,6 +14,9 @@ class SignupProvider extends ChangeNotifier {
   String? _errorMessage;
   String? get errorMessage => _errorMessage;
 
+  String? _successMessage;
+  String? get successMessage => _successMessage;
+
   Future<bool> signUp(SignupParams params) async {
     _signUpProgress = true;
     notifyListeners();
@@ -26,6 +29,7 @@ class SignupProvider extends ChangeNotifier {
 
       if (response.isSuccess) {
         _errorMessage = null;
+        _successMessage = response.body['msg'];
         isSuccess = true;
       } else {
         _errorMessage = response.errorMessage;
