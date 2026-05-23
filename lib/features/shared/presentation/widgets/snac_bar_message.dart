@@ -6,7 +6,7 @@ void snackBarMessage(BuildContext context, String message, bool success) {
       backgroundColor: Colors.transparent,
       elevation: 0,
       behavior: SnackBarBehavior.floating,
-      margin: const EdgeInsets.only(bottom: 80, left: 16, right: 16),
+      margin: const EdgeInsets.only(bottom: 60, left: 16, right: 16),
       padding: EdgeInsets.zero,
       content: Align(
         alignment: Alignment.bottomCenter,

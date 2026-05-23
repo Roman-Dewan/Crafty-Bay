@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'package:crafty_bay/features/shared/presentation/widgets/snac_bar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
@@ -8,6 +7,7 @@ import '../../../../app/extensions/localization_extension.dart';
 import '../../../../app/extensions/utils_extension.dart';
 import '../../../shared/presentation/screens/bottom_nav_bar.dart';
 import '../../../shared/presentation/widgets/center_circular_widget.dart';
+import '../../../shared/presentation/widgets/snac_bar_message.dart';
 import '../providers/timer_provider.dart';
 import '../providers/verify_otp_provider.dart';
 import '../widgets/app_logo.dart';
