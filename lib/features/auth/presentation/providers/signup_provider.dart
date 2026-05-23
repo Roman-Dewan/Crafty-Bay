@@ -1,8 +1,8 @@
-import 'package:crafty_bay/app/network_caller_set_up.dart';
-import 'package:crafty_bay/app/urls.dart';
-import 'package:crafty_bay/core/services/network_caller.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
+import '../../../../app/network_caller_set_up.dart';
+import '../../../../app/urls.dart';
+import '../../../../core/services/network_caller.dart';
 import '../../data/models/signup_params.dart';
 
 class SignupProvider extends ChangeNotifier {

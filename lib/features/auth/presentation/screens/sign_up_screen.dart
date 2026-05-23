@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../app/app_colors.dart';
 import '../../../../app/crafty_bay_app.dart';
 import '../../../../app/extensions/localization_extension.dart';
 import '../../../../app/extensions/utils_extension.dart';
 import '../../../shared/presentation/utils/validators.dart';
+import '../../../shared/presentation/widgets/center_circular_widget.dart';
 import '../../../shared/presentation/widgets/snac_bar_message.dart';
 import '../../data/models/signup_params.dart';
 import '../providers/signup_provider.dart';
@@ -135,11 +135,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       builder: (context, provider, child) {
                         return Visibility(
                           visible: provider.signUpProgress == false,
-                          replacement: const Center(
-                            child: CircularProgressIndicator(
-                              color: AppColors.themeColor,
-                            ),
-                          ),
+                          replacement: const CenterCircularWidget(),
                           child: FilledButton(
                             onPressed: _onTapSignUpButton,
                             child: Text(context.l10n.signUp),
@@ -205,6 +201,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         Navigator.pushNamed(
           CraftyBayApp.navigatorKey.currentContext!,
           OtpVerificationScreen.name,
+          arguments: _emailController.text.trim(),
         );
         snackBarMessage(_context, "Please verify your email address", true);
       }
