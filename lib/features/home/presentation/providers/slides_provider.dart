@@ -28,15 +28,14 @@ class SlidesProvider extends ChangeNotifier {
     if (response.isSuccess) {
       _slides.clear();
       List<SlideModel> tempSlides = [];
-      final responseData = response.body['data'];
-      if (responseData != null && responseData['results'] != null) {
-        final List<dynamic> results = responseData['results'];
-        for (var slider in results) {
-          tempSlides.add(SlideModel.fromJson(slider as Map<String, dynamic>));
-        }
+
+      for (Map<String, dynamic> slider in response.body['data']['results']) {
+        tempSlides.add(SlideModel.fromJson(slider));
       }
+
       _slides = tempSlides;
       _errorMessage = response.errorMessage;
+
       isSuccess = true;
     } else {
       isSuccess = false;

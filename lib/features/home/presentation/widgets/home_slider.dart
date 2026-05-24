@@ -52,10 +52,33 @@ class _HomeSliderState extends State<HomeSlider> {
                     decoration: BoxDecoration(
                       color: Colors.grey.shade200,
                       borderRadius: BorderRadius.circular(12),
-                      image: DecorationImage(
-                        image: NetworkImage(slide.photoUrl),
-                        fit: BoxFit.cover,
-                      ),
+                    ),
+                    clipBehavior: Clip.hardEdge,
+                    child: Image.network(
+                      slide.photoUrl,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) {
+                          return child;
+                        }
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                      (loadingProgress.expectedTotalBytes ?? 1)
+                                : null,
+                          ),
+                        );
+                      },
+                      errorBuilder: (context, error, stackTrace) =>
+                          const Center(
+                            child: Icon(
+                              Icons.broken_image,
+                              color: Colors.grey,
+                              size: 50,
+                            ),
+                          ),
                     ),
                   );
                 }).toList(),

@@ -21,7 +21,7 @@ class NetworkCaller {
       _logRequest(url);
       _logResponse(url, response);
 
-      final decodedData = jsonDecode(response.body);
+      final decodedData = await compute(jsonDecode, response.body);
 
       if (response.statusCode == 200) {
         return NetworkResponse(
