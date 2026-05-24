@@ -6,6 +6,7 @@ import '../../../../app/app_colors.dart';
 import '../../../../app/extensions/localization_extension.dart';
 import '../../../cart/presentation/screens/cart_screen.dart';
 import '../../../category/presentation/screens/category_screen.dart';
+import '../../../home/presentation/providers/slides_provider.dart';
 import '../../../home/presentation/screen/home_screen.dart';
 import '../providers/bottom_nav_provider.dart';
 
@@ -24,6 +25,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
     const CartScreen(),
     const WishListScreen(),
   ];
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.read<SlidesProvider>().getHomeSlides();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<BottomNavProvider>(
