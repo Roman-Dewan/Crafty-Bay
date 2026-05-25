@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../features/auth/presentation/providers/timer_provider.dart';
+import '../features/category/presentation/providers/category_list_provider.dart';
 import '../features/home/presentation/providers/slides_provider.dart';
 import '../features/shared/presentation/providers/bottom_nav_provider.dart';
 import '../l10n/app_localizations.dart';
@@ -25,6 +26,7 @@ class CraftyBayApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => TimerProvider()),
         ChangeNotifierProvider(create: (context) => BottomNavProvider()),
         ChangeNotifierProvider(create: (context) => SlidesProvider()),
+        ChangeNotifierProvider(create: (context) => CategoryListProvider()),
       ],
       child: Consumer2<LanguageProvider, ThemeProvider>(
         builder: (context, languageProvider, themeProvider, child) {

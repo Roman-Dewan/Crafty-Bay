@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../../../../app/app_colors.dart';
 
@@ -8,7 +8,11 @@ class CenterCircularWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: CircularProgressIndicator(color: AppColors.themeColor),
+      child: CupertinoActivityIndicator(
+        color: AppColors.thirdColor,
+        radius: 20,
+        animating: true,
+      ),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../app/controllers/auth_controllers.dart';
 import '../../../shared/presentation/screens/bottom_nav_bar.dart';
+import '../../../shared/presentation/widgets/center_circular_widget.dart';
 import '../widgets/app_logo.dart';
 import 'sign_in_screen.dart';
 
@@ -50,9 +51,9 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             children: [
               Expanded(child: AppLogo(height: 140)),
-              CircularProgressIndicator(),
-              SizedBox(height: 8),
-              Text("version: 1.0.0"),
+              CenterCircularWidget(),
+              const SizedBox(height: 8),
+              const Text("version: 1.0.0"),
             ],
           ),
         ),

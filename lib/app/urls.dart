@@ -8,4 +8,8 @@ class Urls {
 
   // Slides URL
   static const String slidesUrl = "$_baseUrl/slides";
+
+  // Category URL
+  static String getCategoriesUrl({required int page, required int count}) =>
+      "$_baseUrl/categories?count=$count&page=$page";
 }
