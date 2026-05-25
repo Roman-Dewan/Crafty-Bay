@@ -80,7 +80,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         itemBuilder: (context, index) {
                           return FittedBox(
                             fit: BoxFit.scaleDown,
-                            child: CategoryCard(),
+                            child: CategoryCard(
+                              category: provider.categoriesList[index],
+                            ),
                           );
                         },
                       ),

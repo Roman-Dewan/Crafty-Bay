@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 import '../../../../app/asset_paths.dart';
 import '../../../../app/extensions/localization_extension.dart';
 import '../../../shared/presentation/providers/bottom_nav_provider.dart';
-import '../../../shared/presentation/widgets/category_card.dart';
 import '../widgets/app_bar_icon_button.dart';
+import '../widgets/home_category_list_widget.dart';
 import '../widgets/home_slider.dart';
 import '../widgets/horizontal_product_list_view.dart';
 import '../widgets/search_text_field.dart';
@@ -52,12 +52,21 @@ class _HomeScreenState extends State<HomeScreen> {
                         .moveToCategoryScreen(),
                   ),
                   const SizedBox(height: 16),
-                  _buildCategoryList(),
-                  SectionHeader(title: context.l10n.popular, onTapSeeAll: () {}),
+                  HomeCategoryListWidget(),
+                  SectionHeader(
+                    title: context.l10n.popular,
+                    onTapSeeAll: () {},
+                  ),
                   const HorizontalProductListView(),
-                  SectionHeader(title: context.l10n.special, onTapSeeAll: () {}),
+                  SectionHeader(
+                    title: context.l10n.special,
+                    onTapSeeAll: () {},
+                  ),
                   const HorizontalProductListView(),
-                  SectionHeader(title: context.l10n.newProducts, onTapSeeAll: () {}),
+                  SectionHeader(
+                    title: context.l10n.newProducts,
+                    onTapSeeAll: () {},
+                  ),
                   const HorizontalProductListView(),
                 ],
               ),
@@ -68,21 +77,9 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildCategoryList() {
-    return SizedBox(
-      height: 100,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return CategoryCard();
-        },
-        separatorBuilder: (context, index) {
-          return const SizedBox(width: 8);
-        },
-      ),
-    );
-  }
+  // Widget _buildCategoryList() {
+  //   return
+  // }
 
   AppBar _buildAppBar() {
     return AppBar(
@@ -132,4 +129,3 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 }
-
