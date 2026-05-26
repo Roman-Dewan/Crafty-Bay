@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../app/extensions/localization_extension.dart';
+import '../../../products/presentation/providers/product_list_provider.dart';
 import '../../../shared/presentation/widgets/product_card.dart';
 
 class WishListScreen extends StatefulWidget {
@@ -23,9 +25,14 @@ class _WishListScreenState extends State<WishListScreen> {
             mainAxisSpacing: 8,
             // crossAxisSpacing: 8,
           ),
-          itemCount: 10,
+          itemCount: context.read<ProductListProvider>().products.length,
           itemBuilder: (context, index) {
-            return FittedBox(fit: BoxFit.scaleDown, child: const ProductCard());
+            return FittedBox(
+              fit: BoxFit.scaleDown,
+              child: ProductCard(
+                product: context.read<ProductListProvider>().products[index],
+              ),
+            );
           },
         ),
       ),

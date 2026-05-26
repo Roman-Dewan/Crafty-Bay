@@ -79,4 +79,7 @@ class CategoryListProvider extends ChangeNotifier {
     _currentPageNo++;
     return isSuccess;
   }
+
+  bool get loading =>
+      getInitialCategoriesListInProgress || loadMoreCategoriesListInProgress;
 }

@@ -16,7 +16,7 @@ class CategoryCard extends StatelessWidget {
         Navigator.pushNamed(
           context,
           ProductListScreen.name,
-          arguments: category.title,
+          arguments: category,
         );
       },
       child: Column(

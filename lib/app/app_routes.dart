@@ -5,6 +5,7 @@ import '../features/auth/presentation/screens/sign_in_screen.dart';
 import '../features/auth/presentation/screens/sign_up_screen.dart';
 import '../features/auth/presentation/screens/splash_screen.dart';
 import '../features/cart/presentation/screens/cart_screen.dart';
+import '../features/category/data/model/category_model.dart';
 import '../features/category/presentation/screens/category_screen.dart';
 import '../features/home/presentation/screen/home_screen.dart';
 import '../features/products/presentation/screens/create_review_screen.dart';
@@ -47,8 +48,8 @@ class AppRoutes {
         widget = const ProductDetailsScreen();
         break;
       case ProductListScreen.name:
-        final categoryName = routeSetting.arguments as String;
-        widget = ProductListScreen(categoryName: categoryName);
+        final category = routeSetting.arguments as CategoryModel;
+        widget = ProductListScreen(category: category);
         break;
       case ReviewScreen.name:
         widget = const ReviewScreen();

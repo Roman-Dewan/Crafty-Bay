@@ -12,4 +12,11 @@ class Urls {
   // Category URL
   static String getCategoriesUrl({required int page, required int count}) =>
       "$_baseUrl/categories?count=$count&page=$page";
+
+  // Product URL
+  static String getProductsUrl({
+    required int page,
+    required int count,
+    required String categoryId,
+  }) => "$_baseUrl/products?count=$count&page=$page&category=$categoryId";
 }
