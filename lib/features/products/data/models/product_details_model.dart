@@ -1,0 +1,44 @@
+class ProductDetailsModel {
+  final String id;
+  final String title;
+  final String description;
+  final List<String> photos;
+  final List<String> colors;
+  final List<String> sizes;
+  final int currentPrice;
+  final int quantity;
+
+  ProductDetailsModel({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.photos,
+    required this.colors,
+    required this.sizes,
+    required this.currentPrice,
+    required this.quantity,
+  });
+
+  factory ProductDetailsModel.fromJson(Map<String, dynamic> json) =>
+      ProductDetailsModel(
+        id: json['_id'] ?? '',
+        title: json['title'] ?? '',
+        description: json['description'] ?? '',
+        photos: List<String>.from(json['photos'] ?? []),
+        colors: List<String>.from(json['colors'] ?? []),
+        sizes: List<String>.from(json['sizes'] ?? []),
+        currentPrice: json['current_price']?.toInt() ?? 0,
+        quantity: json['quantity'] ?? 0,
+      );
+
+  Map<String, dynamic> toJson() => {
+    '_id': id,
+    'title': title,
+    'description': description,
+    'photos': photos,
+    'colors': colors,
+    'sizes': sizes,
+    'current_price': currentPrice,
+    'quantity': quantity,
+  };
+}

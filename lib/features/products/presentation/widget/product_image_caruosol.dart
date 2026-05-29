@@ -1,11 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:crafty_bay/features/shared/presentation/widgets/center_circular_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../app/app_colors.dart';
 
 class ProductImageCaruosol extends StatefulWidget {
-  const ProductImageCaruosol({super.key});
+  const ProductImageCaruosol({super.key, required this.images});
+  final List<String> images;
 
   @override
   State<ProductImageCaruosol> createState() => _ProductImageCaruosolState();
@@ -38,13 +41,7 @@ class _ProductImageCaruosolState extends State<ProductImageCaruosol> {
               });
             },
           ),
-          items: [
-            buildItem(1),
-            buildItem(2),
-            buildItem(3),
-            buildItem(4),
-            buildItem(5),
-          ],
+          items: widget.images.map((e) => buildItem(e)).toList(),
         ),
         Positioned.fill(
           bottom: 20,
@@ -54,7 +51,7 @@ class _ProductImageCaruosolState extends State<ProductImageCaruosol> {
             alignment: .bottomCenter,
             child: SmoothPageIndicator(
               controller: PageController(initialPage: _currentIndex),
-              count: 5,
+              count: widget.images.length,
               effect: ExpandingDotsEffect(
                 dotHeight: 10,
                 dotWidth: 10,
@@ -68,14 +65,20 @@ class _ProductImageCaruosolState extends State<ProductImageCaruosol> {
     );
   }
 
-  Widget buildItem(int i) {
+  Widget buildItem(String image) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(
         color: Colors.grey.withAlpha(100),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Center(child: Text('text $i')),
+      child: CachedNetworkImage(
+        imageUrl: image,
+        fit: BoxFit.cover,
+        placeholder: (context, url) =>
+            const Center(child: CenterCircularWidget()),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
+      ),
     );
   }
 }

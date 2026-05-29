@@ -12,7 +12,7 @@ class PriceAndAddToCartSection extends StatelessWidget {
     required this.onTapAddTocart,
   });
 
-  final double price;
+  final int price;
   final VoidCallback onTapAddTocart;
 
   @override

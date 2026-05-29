@@ -45,7 +45,8 @@ class AppRoutes {
         widget = const WishListScreen();
         break;
       case ProductDetailsScreen.name:
-        widget = const ProductDetailsScreen();
+        final productId = routeSetting.arguments as String;
+        widget = ProductDetailsScreen(productId: productId);
         break;
       case ProductListScreen.name:
         final category = routeSetting.arguments as CategoryModel;

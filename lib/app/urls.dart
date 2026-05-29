@@ -19,4 +19,7 @@ class Urls {
     required int count,
     required String categoryId,
   }) => "$_baseUrl/products?count=$count&page=$page&category=$categoryId";
+
+  static String getProductDetailsUrl({required String productId}) =>
+      "$_baseUrl/products/id/$productId";
 }

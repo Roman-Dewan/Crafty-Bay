@@ -49,7 +49,13 @@ class _ProductListScreenState extends State<ProductListScreen> {
     return ChangeNotifierProvider.value(
       value: _productListProvider,
       child: Scaffold(
-        appBar: AppBar(title: Text(widget.category.title)),
+        appBar: AppBar(
+          title: Text(widget.category.title),
+          leading: IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: const Icon(Icons.arrow_back_ios_new),
+          ),
+        ),
         body: Consumer<ProductListProvider>(
           builder: (context, provider, child) {
             return SafeArea(
