@@ -30,6 +30,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       ProductDetailsProvider();
   String? _selectedSize;
   Color? _selectedColor;
+  String? _selectedColorName;
+  final Map<Color, String> _colorNameMap = {};
 
   @override
   void initState() {
@@ -178,8 +180,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             onChange: (Color color) {
               setState(() {
                 _selectedColor = color;
+                _selectedColorName = _colorNameMap[color];
               });
-              if (kDebugMode) log("Selected color is : $color");
+              if (kDebugMode) {
+                log("Selected color name is : $_selectedColorName");
+              }
             },
           ),
           const SizedBox(height: 8),
@@ -194,7 +199,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               setState(() {
                 _selectedSize = size;
               });
-              if (kDebugMode) log("Selected size is : $size");
+              if (kDebugMode) log("Selected size is : $_selectedSize");
             },
           ),
         ],
@@ -204,12 +209,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   List<Color> _extractColors(List<String> colors) {
     List<Color> parsedColors = [];
+    _colorNameMap.clear();
     for (String colorString in colors) {
       final parts = colorString.split(',');
       for (String part in parts) {
-        final color = _getColorFromString(part.trim());
+        final colorName = part.trim();
+        final color = _getColorFromString(colorName);
         if (color != Colors.transparent) {
           parsedColors.add(color);
+          _colorNameMap[color] = colorName;
         }
       }
     }
