@@ -24,7 +24,6 @@ dependencies:
   carousel_slider: ^5.1.2
   smooth_page_indicator: ^2.0.1
   http: ^1.6.0
-  logger: ^2.7.0
   shared_preferences: ^2.5.5
   cached_network_image: ^3.4.1
 

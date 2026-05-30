@@ -6,10 +6,12 @@ import '../../../../app/app_colors.dart';
 class IncrementDecrementButton extends StatefulWidget {
   const IncrementDecrementButton({
     super.key,
-    this.width = 100,
     required this.onChange,
+    this.width = 100,
+    this.maxCount = 20,
   });
   final double width;
+  final int maxCount;
   final Function(int count) onChange;
 
   @override
@@ -47,9 +49,11 @@ class _IncrementDecrementButtonState extends State<IncrementDecrementButton> {
           _buildButton(
             icon: Icons.add,
             onTap: () {
-              _counter++;
-              setState(() {});
-              widget.onChange(_counter);
+              if (_counter < widget.maxCount) {
+                _counter++;
+                setState(() {});
+                widget.onChange(_counter);
+              }
             },
           ),
         ],

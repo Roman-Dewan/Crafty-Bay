@@ -106,6 +106,7 @@ class NetworkCaller {
       log(
         "Url: $url\n"
         "Body: $body",
+        name: "logRequest",
       );
     }
   }
@@ -116,6 +117,7 @@ class NetworkCaller {
         "Url: $url\n"
         "Status Code: ${response.statusCode}\n"
         "Body: ${response.body}",
+        name: "logResponse",
       );
     }
   }

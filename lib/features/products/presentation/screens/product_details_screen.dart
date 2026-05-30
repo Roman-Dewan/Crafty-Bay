@@ -154,89 +154,128 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             ],
           ),
         ),
-        IncrementDecrementButton(onChange: (int count) {}),
+        IncrementDecrementButton(
+          onChange: (int count) {},
+          maxCount: _productDetailsProvider.productDetailsModel!.quantity,
+        ),
       ],
     );
   }
 
   Widget _buildColorAndSizePicker(BuildContext context) {
+    final productDetails = _productDetailsProvider.productDetailsModel!;
+    final List<Color> availableColors = _extractColors(productDetails.colors);
+    final List<String> availableSizes = _extractSizes(productDetails.sizes);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Color picker
-        ColorPicker(
-          colors: const [
-            Colors.red,
-            Colors.blue,
-            Colors.green,
-            Colors.yellow,
-            Colors.black,
-            Colors.purple,
-            Colors.orange,
-            Colors.pink,
-            Colors.amber,
-            Colors.teal,
-            Colors.indigo,
-            Colors.cyan,
-            Colors.lime,
-            Colors.pink,
-          ],
-          selectedColor: _selectedColor,
-          onChange: (Color color) {
-            setState(() {
-              _selectedColor = color;
-            });
-            if (kDebugMode) log("Selected color is : $color");
-          },
-        ),
+        if (availableColors.isNotEmpty) ...[
+          ColorPicker(
+            colors: availableColors,
+            selectedColor: _selectedColor,
+            onChange: (Color color) {
+              setState(() {
+                _selectedColor = color;
+              });
+              if (kDebugMode) log("Selected color is : $color");
+            },
+          ),
+          const SizedBox(height: 8),
+        ],
 
-        const SizedBox(height: 8),
-
-        // portion picker
-        SizePicker(
-          sizes: const [
-            "S",
-            "M",
-            "L",
-            "XL",
-            "XXL",
-            "XXXL",
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F",
-            "G",
-            "H",
-            "I",
-            "J",
-            "K",
-            "L",
-            "M",
-            "N",
-            "O",
-            "P",
-            "Q",
-            "R",
-            "S",
-            "T",
-            "U",
-            "V",
-            "W",
-            "X",
-            "Y",
-            "Z",
-          ],
-          selectedSize: _selectedSize,
-          onChange: (String size) {
-            setState(() {
-              _selectedSize = size;
-            });
-            if (kDebugMode) log("Selected size is : $size");
-          },
-        ),
+        // size picker
+        if (availableSizes.isNotEmpty) ...[
+          SizePicker(
+            sizes: availableSizes,
+            selectedSize: _selectedSize,
+            onChange: (String size) {
+              setState(() {
+                _selectedSize = size;
+              });
+              if (kDebugMode) log("Selected size is : $size");
+            },
+          ),
+        ],
       ],
     );
+  }
+
+  List<Color> _extractColors(List<String> colors) {
+    List<Color> parsedColors = [];
+    for (String colorString in colors) {
+      final parts = colorString.split(',');
+      for (String part in parts) {
+        final color = _getColorFromString(part.trim());
+        if (color != Colors.transparent) {
+          parsedColors.add(color);
+        }
+      }
+    }
+    return parsedColors;
+  }
+
+  List<String> _extractSizes(List<String> sizes) {
+    List<String> parsedSizes = [];
+    for (String sizeString in sizes) {
+      final parts = sizeString.split(',');
+      for (String part in parts) {
+        if (part.trim().isNotEmpty) {
+          parsedSizes.add(part.trim());
+        }
+      }
+    }
+    return parsedSizes;
+  }
+
+  Color _getColorFromString(String color) {
+    final lowerColor = color.toLowerCase();
+    switch (lowerColor) {
+      case 'red':
+        return Colors.red;
+      case 'blue':
+        return Colors.blue;
+      case 'green':
+        return Colors.green;
+      case 'yellow':
+        return Colors.yellow;
+      case 'black':
+        return Colors.black;
+      case 'white':
+        return Colors.white;
+      case 'purple':
+        return Colors.purple;
+      case 'orange':
+        return Colors.orange;
+      case 'pink':
+        return Colors.pink;
+      case 'amber':
+        return Colors.amber;
+      case 'teal':
+        return Colors.teal;
+      case 'indigo':
+        return Colors.indigo;
+      case 'cyan':
+        return Colors.cyan;
+      case 'lime':
+        return Colors.lime;
+      case 'grey':
+      case 'gray':
+        return Colors.grey;
+      case 'brown':
+        return Colors.brown;
+    }
+    try {
+      String hexColor = color.replaceAll('#', '');
+      if (hexColor.length == 6) {
+        return Color(int.parse('0xFF$hexColor'));
+      } else if (hexColor.length == 8) {
+        return Color(int.parse('0x$hexColor'));
+      }
+    } catch (e) {
+      // Ignore exception
+    }
+    return Colors.transparent;
   }
 }

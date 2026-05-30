@@ -23,7 +23,7 @@ class _ProductImageCaruosolState extends State<ProductImageCaruosol> {
         CarouselSlider(
           options: CarouselOptions(
             height: 220.0,
-            autoPlay: true,
+            autoPlay: false,
             aspectRatio: 16 / 9,
             viewportFraction: 1.1,
             initialPage: 0,
@@ -44,7 +44,7 @@ class _ProductImageCaruosolState extends State<ProductImageCaruosol> {
           items: widget.images.map((e) => buildItem(e)).toList(),
         ),
         Positioned.fill(
-          bottom: 20,
+          bottom: 10,
           left: 0,
           right: 0,
           child: Align(
