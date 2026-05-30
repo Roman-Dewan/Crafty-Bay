@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,6 +13,8 @@ import '../widgets/home_slider.dart';
 import '../widgets/horizontal_product_list_view.dart';
 import '../widgets/search_text_field.dart';
 import '../widgets/section_header.dart';
+import '../../../category/presentation/providers/category_list_provider.dart';
+import '../../../products/presentation/screens/product_list_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -55,19 +58,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   HomeCategoryListWidget(),
                   SectionHeader(
                     title: context.l10n.popular,
-                    onTapSeeAll: () {},
+                    onTapSeeAll: () => _navigateToProductListScreen(context, 'Popular'),
                   ),
-                  const HorizontalProductListView(),
+                  const HorizontalProductListView(categoryName: 'Popular'),
                   SectionHeader(
                     title: context.l10n.special,
-                    onTapSeeAll: () {},
+                    onTapSeeAll: () => _navigateToProductListScreen(context, 'Special'),
                   ),
-                  const HorizontalProductListView(),
+                  const HorizontalProductListView(categoryName: 'Special'),
                   SectionHeader(
                     title: context.l10n.newProducts,
-                    onTapSeeAll: () {},
+                    onTapSeeAll: () => _navigateToProductListScreen(context, 'Books'),
                   ),
-                  const HorizontalProductListView(),
+                  const HorizontalProductListView(categoryName: 'Books'),
                 ],
               ),
             ),
@@ -80,6 +83,26 @@ class _HomeScreenState extends State<HomeScreen> {
   // Widget _buildCategoryList() {
   //   return
   // }
+
+  void _navigateToProductListScreen(BuildContext context, String categoryName) {
+    final categories = context.read<CategoryListProvider>().categoriesList;
+    try {
+      final category = categories.firstWhere(
+        (c) => c.title.toLowerCase() == categoryName.toLowerCase(),
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ProductListScreen(category: category),
+        ),
+      );
+    } catch (e) {
+      // Category not found
+      if (kDebugMode) {
+        print("Category $categoryName not found");
+      }
+    }
+  }
 
   AppBar _buildAppBar() {
     return AppBar(
