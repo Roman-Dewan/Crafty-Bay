@@ -7,7 +7,7 @@ import 'package:http/http.dart';
 part '../models/network_response.dart';
 
 class NetworkCaller {
-  final Map<String, String> headers;
+  final Map<String, String> Function() headers;
   final VoidCallback onUnauthorized;
 
   NetworkCaller({required this.headers, required this.onUnauthorized});
@@ -16,7 +16,7 @@ class NetworkCaller {
   Future<NetworkResponse> getRequest(String url) async {
     try {
       Uri uri = Uri.parse(url);
-      Response response = await get(uri, headers: headers);
+      Response response = await get(uri, headers: headers());
 
       _logRequest(url);
       _logResponse(url, response);
@@ -70,7 +70,7 @@ class NetworkCaller {
 
       Response response = await post(
         uri,
-        headers: headers,
+        headers: headers(),
         body: jsonEncode(body),
       );
 

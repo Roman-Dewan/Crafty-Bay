@@ -1,4 +1,7 @@
+import 'package:crafty_bay/features/products/presentation/providers/add_to_cart_provider.dart';
+import 'package:crafty_bay/features/shared/presentation/widgets/center_circular_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../app/app_colors.dart';
 import '../../../../app/app_constants.dart';
@@ -44,10 +47,18 @@ class PriceAndAddToCartSection extends StatelessWidget {
               ),
             ],
           ),
-          FilledButton(
-            style: FilledButton.styleFrom(fixedSize: Size.fromWidth(150)),
-            onPressed: onTapAddTocart,
-            child: Text(context.l10n.addToCart),
+          Consumer<AddToCartProvider>(
+            builder: (context, addToCartProvider, _) {
+              return Visibility(
+                visible: !addToCartProvider.addToCartInProgress,
+                replacement: const CenterCircularWidget(),
+                child: FilledButton(
+                  style: FilledButton.styleFrom(fixedSize: Size.fromWidth(150)),
+                  onPressed: onTapAddTocart,
+                  child: Text(context.l10n.addToCart),
+                ),
+              );
+            },
           ),
         ],
       ),

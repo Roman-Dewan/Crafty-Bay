@@ -1,4 +1,6 @@
 import 'dart:developer';
+import 'package:crafty_bay/app/crafty_bay_app.dart';
+import 'package:crafty_bay/features/shared/presentation/widgets/snac_bar_message.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +11,8 @@ import '../../../shared/presentation/widgets/center_circular_widget.dart';
 import '../../../shared/presentation/widgets/favorite_icon_widget.dart';
 import '../../../shared/presentation/widgets/increment_decrement_button.dart';
 import '../../../shared/presentation/widgets/rating_widget.dart';
+import '../../data/models/add_to_cart_model.dart';
+import '../providers/add_to_cart_provider.dart';
 import '../providers/product_details_provider.dart';
 import '../widget/color_picker.dart';
 import '../widget/product_image_caruosol.dart';
@@ -28,10 +32,12 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   final ProductDetailsProvider _productDetailsProvider =
       ProductDetailsProvider();
+  final AddToCartProvider _addToCartProvider = AddToCartProvider();
   String? _selectedSize;
   Color? _selectedColor;
   String? _selectedColorName;
   final Map<Color, String> _colorNameMap = {};
+  int _count = 1;
 
   @override
   void initState() {
@@ -45,8 +51,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider.value(
-      value: _productDetailsProvider,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => _productDetailsProvider),
+        ChangeNotifierProvider(create: (_) => _addToCartProvider),
+      ],
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -114,7 +123,30 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 PriceAndAddToCartSection(
                   price:
                       _productDetailsProvider.productDetailsModel!.currentPrice,
-                  onTapAddTocart: () {},
+                  onTapAddTocart: () async {
+                    AddToCartModel params = AddToCartModel(
+                      id: _productDetailsProvider.productDetailsModel!.id,
+                      quantity: _count,
+                      color: _selectedColorName,
+                      size: _selectedSize,
+                    );
+                    final success = await _addToCartProvider.addToCart(params);
+                    if (!mounted) return;
+                    if (success) {
+                      snackBarMessage(
+                        CraftyBayApp.navigatorKey.currentContext!,
+                        "Added to cart",
+                        true,
+                      );
+                    } else {
+                      snackBarMessage(
+                        CraftyBayApp.navigatorKey.currentContext!,
+                        _addToCartProvider.errorMessage ??
+                            'Something went wrong',
+                        false,
+                      );
+                    }
+                  },
                 ),
               ],
             );
@@ -157,7 +189,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           ),
         ),
         IncrementDecrementButton(
-          onChange: (int count) {},
+          onChange: (int count) {
+            _count = count;
+          },
           maxCount: _productDetailsProvider.productDetailsModel!.quantity,
         ),
       ],

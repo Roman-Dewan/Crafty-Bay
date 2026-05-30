@@ -9,6 +9,9 @@ class Urls {
   // Slides URL
   static const String slidesUrl = "$_baseUrl/slides";
 
+  // Cart URL
+  static const String addToCartUrl = "$_baseUrl/cart";
+
   // Category URL
   static String getCategoriesUrl({required int page, required int count}) =>
       "$_baseUrl/categories?count=$count&page=$page";
