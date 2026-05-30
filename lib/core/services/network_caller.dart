@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 
@@ -44,6 +45,12 @@ class NetworkCaller {
           /// [Decouple] korte hobe
         );
       }
+    } on SocketException {
+      return NetworkResponse(
+        isSuccess: false,
+        statusCode: -1,
+        errorMessage: 'No internet connection',
+      );
     } catch (e) {
       return NetworkResponse(
         isSuccess: false,
@@ -92,6 +99,12 @@ class NetworkCaller {
           errorMessage: decodedData['msg'],
         );
       }
+    } on SocketException {
+      return NetworkResponse(
+        isSuccess: false,
+        statusCode: -1,
+        errorMessage: 'No internet connection',
+      );
     } catch (e) {
       return NetworkResponse(
         isSuccess: false,
