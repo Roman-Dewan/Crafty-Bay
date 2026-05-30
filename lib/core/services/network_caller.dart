@@ -64,6 +64,7 @@ class NetworkCaller {
   Future<NetworkResponse> postRequest(
     String url, {
     Map<String, dynamic>? body,
+    bool isFromLogin = false,
   }) async {
     try {
       Uri uri = Uri.parse(url);
@@ -86,7 +87,9 @@ class NetworkCaller {
           body: decodedData,
         );
       } else if (response.statusCode == 401) {
-        onUnauthorized();
+        if (!isFromLogin) {
+          onUnauthorized();
+        }
         return NetworkResponse(
           isSuccess: false,
           statusCode: response.statusCode,
