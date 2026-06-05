@@ -9,10 +9,12 @@ class IncrementDecrementButton extends StatefulWidget {
     required this.onChange,
     this.width = 100,
     this.maxCount = 20,
+    this.initilValue = 1,
   });
   final double width;
   final int maxCount;
   final Function(int count) onChange;
+  final int initilValue;
 
   @override
   State<IncrementDecrementButton> createState() =>
@@ -21,6 +23,13 @@ class IncrementDecrementButton extends StatefulWidget {
 
 class _IncrementDecrementButtonState extends State<IncrementDecrementButton> {
   int _counter = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    _counter = widget.initilValue;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(

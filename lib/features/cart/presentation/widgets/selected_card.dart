@@ -5,10 +5,16 @@ import '../../../../app/app_constants.dart';
 import '../../../../app/asset_paths.dart';
 import '../../../../app/extensions/localization_extension.dart';
 import '../../../../app/extensions/utils_extension.dart';
+import '../../../shared/presentation/widgets/center_circular_widget.dart';
 import '../../../shared/presentation/widgets/increment_decrement_button.dart';
+import '../../data/models/cart_model.dart';
+
+import 'package:provider/provider.dart';
+import '../../../cart/presentation/providers/cart_list_provider.dart';
 
 class SelectedCard extends StatelessWidget {
-  const SelectedCard({super.key});
+  final CartModel cart;
+  const SelectedCard({super.key, required this.cart});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +26,17 @@ class SelectedCard extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.asset(AssetPaths.dummyImage, height: 100, width: 100),
+            child: Image.network(
+              cart.product.photos.first,
+              height: 100,
+              width: 100,
+              errorBuilder: (context, error, stackTrace) =>
+                  Image.asset(AssetPaths.dummyImage),
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return const CenterCircularWidget();
+              },
+            ),
           ),
           Expanded(
             child: Column(
@@ -32,19 +48,36 @@ class SelectedCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "New Year Special Shoe",
+                            cart.product.title,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: context.textTheme.bodyMedium?.copyWith(
                               fontWeight: .w600,
                             ),
                           ),
-                          Text(
-                            "${context.l10n.color}: Red   ${context.l10n.size}: M",
-                            style: context.textTheme.bodyMedium?.copyWith(
-                              color: Colors.black.withAlpha(400),
-                              fontWeight: .w400,
-                            ),
+                          Row(
+                            children: [
+                              if (cart.color != null &&
+                                  cart.color!.isNotEmpty) ...[
+                                Text(
+                                  "${context.l10n.color}: ${cart.color}   ",
+                                  style: context.textTheme.bodyMedium?.copyWith(
+                                    color: Colors.black.withAlpha(400),
+                                    fontWeight: .w400,
+                                  ),
+                                ),
+                              ],
+                              if (cart.size != null &&
+                                  cart.size!.isNotEmpty) ...[
+                                Text(
+                                  "${context.l10n.size}: ${cart.size}",
+                                  style: context.textTheme.bodyMedium?.copyWith(
+                                    color: Colors.black.withAlpha(400),
+                                    fontWeight: .w400,
+                                  ),
+                                ),
+                              ],
+                            ],
                           ),
                         ],
                       ),
@@ -63,12 +96,20 @@ class SelectedCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "${AppConstants.takaSymbol}100",
+                      "${AppConstants.takaSymbol}${cart.product.currentPrice * cart.quantity}",
                       style: context.textTheme.titleMedium?.copyWith(
                         color: AppColors.themeColor,
                       ),
                     ),
-                    IncrementDecrementButton(onChange: (int count) {}),
+                    IncrementDecrementButton(
+                      initilValue: cart.quantity,
+                      onChange: (int count) {
+                        context.read<CartListProvider>().changeQuantity(
+                          cart.id,
+                          count,
+                        );
+                      },
+                    ),
                   ],
                 ),
               ],

@@ -4,7 +4,6 @@ import '../../../../app/controllers/auth_controllers.dart';
 import '../../../shared/presentation/screens/bottom_nav_bar.dart';
 import '../../../shared/presentation/widgets/center_circular_widget.dart';
 import '../widgets/app_logo.dart';
-import 'sign_in_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,6 +14,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final String _version = "1.0.1";
   @override
   void initState() {
     super.initState();
@@ -22,24 +22,18 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _navigateToNextScreen() async {
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 2));
 
-    final loggdIn = await AuthControllers.isUserLoggedIn();
-    if (!mounted) return;
-
-    if (loggdIn) {
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        BottomNavBar.name,
-        (route) => false,
-      );
-    } else {
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        SignInScreen.name,
-        (route) => false,
-      );
+    final isLoggedIn = await AuthControllers.isUserLoggedIn();
+    if (isLoggedIn) {
+      await AuthControllers.getUserData();
     }
+    if (!mounted) return;
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      BottomNavBar.name,
+      (route) => false,
+    );
   }
 
   @override
@@ -53,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
               Expanded(child: AppLogo(height: 140)),
               CenterCircularWidget(),
               const SizedBox(height: 8),
-              const Text("version: 1.0.0"),
+              Text("version: $_version"),
             ],
           ),
         ),

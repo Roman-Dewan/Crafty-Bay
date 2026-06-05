@@ -8,6 +8,7 @@ import '../features/home/presentation/providers/slides_provider.dart';
 import '../features/products/presentation/providers/product_details_provider.dart';
 import '../features/products/presentation/providers/product_list_provider.dart';
 import '../features/shared/presentation/providers/bottom_nav_provider.dart';
+import '../features/cart/presentation/providers/cart_list_provider.dart';
 import '../l10n/app_localizations.dart';
 import 'app_routes.dart';
 import 'app_theme.dart';
@@ -31,6 +32,7 @@ class CraftyBayApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => CategoryListProvider()),
         ChangeNotifierProvider(create: (context) => ProductListProvider()),
         ChangeNotifierProvider(create: (context) => ProductDetailsProvider()),
+        ChangeNotifierProvider(create: (context) => CartListProvider()),
       ],
       child: Consumer2<LanguageProvider, ThemeProvider>(
         builder: (context, languageProvider, themeProvider, child) {

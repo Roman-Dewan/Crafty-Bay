@@ -146,6 +146,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         false,
                       );
                     }
+                    Navigator.pop(CraftyBayApp.navigatorKey.currentContext!);
                   },
                 ),
               ],

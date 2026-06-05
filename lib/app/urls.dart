@@ -11,6 +11,7 @@ class Urls {
 
   // Cart URL
   static const String addToCartUrl = "$_baseUrl/cart";
+  static const String getCartItemsUrl = "$_baseUrl/cart";
 
   // Category URL
   static String getCategoriesUrl({required int page, required int count}) =>
